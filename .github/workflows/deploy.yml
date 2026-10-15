@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; let an in-progress deploy finish
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html prototype.html _site/
+          [ -f CNAME ] && cp CNAME _site/ || true
+          cp -R assets _site/
+
+      - name: Check local asset references
+        run: |
+          # Fail the build if a page or the prototype script points at a file that isn't in the site
+          missing=0
+          for page in _site/index.html _site/prototype.html _site/assets/js/prototype.js; do
+            for ref in $(grep -oE 'assets/[A-Za-z0-9_./-]+\.(png|jpg|svg|ico|js)|(src|href)="[a-z-]+\.html' "$page" \
+                         | sed -E 's/^(src|href)="//' | sort -u); do
+              if [ ! -e "_site/$ref" ]; then
+                echo "::error file=${page#_site/}::Missing $ref"
+                missing=1
+              fi
+            done
+          done
+          exit $missing
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5
