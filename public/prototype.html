@@ -133,6 +133,7 @@
   .proj-ic { width: 18px; height: 18px; border-radius: 5px; display: inline-grid; place-items: center; font-size: 9px; font-weight: 700; color: #fff; flex-shrink: 0; letter-spacing: -.02em; }
 
   .main { overflow-y: auto; min-width: 0; position: relative; background: var(--surface-canvas); }
+  .main.enter > * { animation: rise .26s ease-out; }
   .page { padding: 22px 32px 48px; max-width: 1180px; }
   .page.wide { max-width: none; }
   .page-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
@@ -326,6 +327,9 @@
   .embed .row { font-size: 13px; }
   .slash { position: absolute; z-index: 30; width: 240px; }
   .side { border-left: 1px solid var(--border-subtle); overflow: hidden; }
+  .doc-wrap:not(.side) .side { border-left-width: 0; }
+  /* Nothing on a Document page scrolls sideways; this also absorbs sub-pixel rounding on high-density screens. */
+  .main:has(.doc-wrap) { overflow-x: hidden; }
   .side-in { width: 300px; padding: 14px 16px; }
   .side-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-weight: 600; }
   .ver { display: flex; gap: 10px; padding: 9px 8px; border-radius: 8px; cursor: pointer; }
@@ -394,6 +398,6 @@
 <div id="layer"></div>
 <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 <a class="back-link" href="index.html"><i class="ti ti-arrow-left"></i> Back to case study</a>
-<script src="assets/js/prototype.js"></script>
+<script src="assets/js/prototype.js?v=2"></script>
 </body>
 </html>

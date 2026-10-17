@@ -21,7 +21,7 @@ Then open:
 
 - http://127.0.0.1:4188/ — case study
 - http://127.0.0.1:4188/prototype.html — prototype on its own (starts at sign-in)
-- http://127.0.0.1:4188/prototype.html#/projects/DAL/board — any prototype address, deep-linked
+- http://127.0.0.1:4188/prototype.html#/projects/ACM/board — any prototype address, deep-linked
 
 ## Project structure
 
@@ -42,9 +42,9 @@ One in-memory state, a path router and an action map (`A`) wired to `data-act` a
 
 The address is the source of truth, as it is in Kova: a Filter lives entirely in the query string, so a narrowed list is a link. Standalone, the path is kept in the URL hash.
 
-**Data** mirrors the monorepo's sample seed (`supabase/seeds`): the five people (two Owners, a member, an invited and a suspended person), the Projects, and the Dalqen issues with their seeded titles, statuses and priorities.
+**Data** mirrors the monorepo's sample seed (`supabase/seeds`): the five people (two Owners, a member, an invited and a suspended person), the Projects (renamed to fictional ones), and the sample issues with their seeded titles, statuses and priorities.
 
-**Flows:** sign-in; Areas strip (Kova, Kova Docs, Admin) with per-Area memory; Home and My Work; notifications popover; Filters by Status, Priority, Assignee, Project and Placement, with Saved filters and `j`/`k` keyboard navigation; issue detail with editable properties and comments; drag-and-drop board; Sprint planning with estimates; ⌘K command palette; new issue (`c`); Kova Docs with Drafts, collaborators, Publish, a live issue-list Embed, a self-updating table of contents, the `/` block menu, anchored comment Threads with Resolve, Version history and named versions, Icon and Cover pickers, Archive and Trash; Admin's Needs attention, the People roster, Suspend (which unassigns unfinished issues), and the Confirmation code that guards ownership changes and Remove from Kova for five minutes; personal access tokens; light and dark themes.
+**Flows:** sign-in; Areas strip (Kova, Kova Docs, Admin) with per-Area memory; Home and My Work; notifications popover; Filters by Status, Priority, Assignee, Project and Placement, with Saved filters and `j`/`k` keyboard navigation; issue detail with editable properties and comments; drag-and-drop board; Sprint planning with estimates; ⌘K command palette; new issue (`c`); Kova Docs with Drafts, collaborators, Publish, a live issue-list Embed, a self-updating table of contents, the `/` block menu, anchored comment Threads with Resolve, Version history and named versions, Icon and Cover pickers, Archive (read-only, restorable) and a Trash that purges after 30 days; Admin's Needs attention, the People roster, Suspend (which unassigns unfinished issues), and the Confirmation code that guards ownership changes and Remove from Kova for five minutes; personal access tokens; light and dark themes.
 
 ### Driving it from the case study
 
@@ -55,8 +55,8 @@ frame.contentWindow.postMessage({
   type: 'kova:goto',
   path: '/issues?status=blocked&assignee=me', // any prototype address
   side: 'comments',      // optional: 'comments' | 'history' panel on a Document
-  action: 'filter',      // optional: palette | paletteSearch | notifications | newIssue |
-                         //   publish | history | comments | filter | member | theme | tokens
+  action: 'filter',      // optional: palette | paletteSearch | notifications | newIssue | collapse |
+                         //   publish | history | comments | docMenu | filter | member | theme | tokens
   arg: 'priority',       // optional argument for the action
   theme: 'dark',         // optional
 }, '*');

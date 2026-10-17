@@ -6,7 +6,7 @@
  * `data-go="/path"`. Everything resets on reload.
  *
  * The data mirrors the monorepo's sample seed (supabase/seeds): the five people, the Projects, and the
- * Dalqen issues keep their seeded titles, statuses and priorities.
+ * Sample issues keep their seeded titles, statuses and priorities.
  */
 (() => {
   'use strict';
@@ -18,33 +18,33 @@
   // ------------------------------------------------------------------ data --
 
   const people = {
-    kd:   { name: 'Kova Developer', ini: 'KD', email: 'developer@xkye.dev', owner: true,  status: 'active',    color: '#0449D4', last: 'Now' },
-    ada:  { name: 'Ada Admin',      ini: 'AA', email: 'ada@xkye.dev',       owner: true,  status: 'active',    color: '#7a52a0', last: '12 min ago' },
-    mira: { name: 'Mira Member',    ini: 'MM', email: 'mira@xkye.dev',      owner: false, status: 'active',    color: '#3b7253', last: '1 hour ago' },
-    pat:  { name: 'Pat Pending',    ini: 'PP', email: 'pat@xkye.dev',       owner: false, status: 'invited',   color: '#6f6e69', last: 'Never', expired: true },
-    sam:  { name: 'Sam Suspended',  ini: 'SS', email: 'sam@xkye.dev',       owner: false, status: 'suspended', color: '#c0392f', last: '4 Aug', suspendedDays: 64 },
+    kd:   { name: 'Kova Owner', ini: 'KO', email: 'owner@company.com', owner: true,  status: 'active',    color: '#0449D4', last: 'Now' },
+    ada:  { name: 'Ada Admin',      ini: 'AA', email: 'ada@company.com',       owner: true,  status: 'active',    color: '#7a52a0', last: '12 min ago' },
+    mira: { name: 'Mira Member',    ini: 'MM', email: 'mira@company.com',      owner: false, status: 'active',    color: '#3b7253', last: '1 hour ago' },
+    pat:  { name: 'Pat Pending',    ini: 'PP', email: 'pat@company.com',       owner: false, status: 'invited',   color: '#6f6e69', last: 'Never', expired: true },
+    sam:  { name: 'Sam Suspended',  ini: 'SS', email: 'sam@company.com',       owner: false, status: 'suspended', color: '#c0392f', last: '4 Aug', suspendedDays: 64 },
   };
 
   const projects = [
-    { key: 'DAL', name: 'Dalqen', status: 'active', color: '#0449D4', summary: 'The product the studio dogfoods Kova with.', desc: 'Research, build, and ship the first usable spine. Every issue here is a piece of the product the studio dogfoods Kova with.', members: ['kd', 'ada', 'mira'] },
-    { key: 'REN', name: 'Renigo', status: 'active', color: '#3b7253', summary: 'A client engagement, delivered in slices.', desc: 'The Renigo data platform, delivered in slices with the client reading the board beside us.', members: ['kd', 'ada', 'mira'] },
+    { key: 'ACM', name: 'Acme', status: 'active', color: '#0449D4', summary: 'A product build, from first slice to launch.', desc: 'Research, build, and ship the first usable spine of the product.', members: ['kd', 'ada', 'mira'] },
+    { key: 'BLU', name: 'Bluebird', status: 'active', color: '#3b7253', summary: 'A client engagement, delivered in slices.', desc: 'A client data platform, delivered in slices with the client reading the board beside us.', members: ['kd', 'ada', 'mira'] },
     { key: 'INT', name: 'Internal', status: 'active', color: '#7a52a0', summary: 'How the studio runs itself.', desc: 'Onboarding, tooling, and the paperwork nobody wants to own.', members: ['kd', 'ada', 'mira'] },
-    { key: 'FOR', name: 'Forge Events', status: 'planned', color: '#c26a0d', summary: 'Registration, scheduling and run sheets.', desc: 'The events platform: registration, scheduling, and the run sheets the crew works from on the day.', members: ['kd', 'ada'] },
-    { key: 'ATL', name: 'Atlas handover', status: 'paused', color: '#6f6e69', summary: 'What is left to hand over.', desc: 'Paused while the client reorganises.', members: ['kd', 'ada'] },
+    { key: 'EVT', name: 'Events site', status: 'planned', color: '#c26a0d', summary: 'Registration, scheduling and run sheets.', desc: 'An events site: registration, scheduling, and the run sheets the crew works from on the day.', members: ['kd', 'ada'] },
+    { key: 'NGT', name: 'Northgate handover', status: 'paused', color: '#6f6e69', summary: 'What is left to hand over.', desc: 'Paused while the client reorganises.', members: ['kd', 'ada'] },
     { key: 'LEG', name: 'Legacy portal', status: 'completed', color: '#8a5a44', summary: 'The intranet the studio replaced.', desc: 'Kept as a record of what was migrated and what was deliberately dropped.', members: ['kd', 'ada'] },
-    { key: 'ORB', name: 'Orbital experiment', status: 'cancelled', color: '#ad3f7a', summary: 'An idea that did not survive a spike.', desc: '', members: ['kd', 'ada'] },
+    { key: 'LAB', name: 'Lab spike', status: 'cancelled', color: '#ad3f7a', summary: 'An idea that did not survive a spike.', desc: '', members: ['kd', 'ada'] },
   ];
-  const nextNumber = { DAL: 13, REN: 8, INT: 5, FOR: 1, ATL: 3, LEG: 3, ORB: 2 };
+  const nextNumber = { ACM: 13, BLU: 8, INT: 5, EVT: 1, NGT: 3, LEG: 3, LAB: 2 };
 
   const sprints = {
-    'DAL-S3': { id: 'DAL-S3', project: 'DAL', name: 'Sprint 3', range: '22 Sep – 5 Oct', state: 'completed' },
-    'DAL-S4': { id: 'DAL-S4', project: 'DAL', name: 'Sprint 4', range: '6 Oct – 19 Oct', state: 'running' },
-    'DAL-S5': { id: 'DAL-S5', project: 'DAL', name: 'Sprint 5', range: '20 Oct – 2 Nov', state: 'planned' },
-    'REN-S2': { id: 'REN-S2', project: 'REN', name: 'Slice 2', range: '29 Sep – 19 Oct', state: 'running' },
+    'ACM-S3': { id: 'ACM-S3', project: 'ACM', name: 'Sprint 3', range: '22 Sep – 5 Oct', state: 'completed' },
+    'ACM-S4': { id: 'ACM-S4', project: 'ACM', name: 'Sprint 4', range: '6 Oct – 19 Oct', state: 'running' },
+    'ACM-S5': { id: 'ACM-S5', project: 'ACM', name: 'Sprint 5', range: '20 Oct – 2 Nov', state: 'planned' },
+    'BLU-S2': { id: 'BLU-S2', project: 'BLU', name: 'Slice 2', range: '29 Sep – 19 Oct', state: 'running' },
     'INT-S1': { id: 'INT-S1', project: 'INT', name: 'October', range: '1 Oct – 31 Oct', state: 'running' },
   };
 
-  const DAL1_MD = `<h2>Why</h2><p>The daily work path needs an issue to read, so this fixture is what the local stack has to show until creation lands.</p><ul><li><strong>Status</strong> changes arrive with KOV-019.</li><li>Comments arrive with KOV-020.</li></ul><p>The detail view renders this Markdown, so it exercises a heading, a list, bold text, <code>inline code</code>, and a <a href="#">link</a>.</p><pre>kova issue dal-1</pre>`;
+  const DAL1_MD = `<h2>Why</h2><p>The daily work path needs an issue to read, so this fixture is what the local stack has to show until creation lands.</p><ul><li><strong>Status</strong> changes arrive with KOV-019.</li><li>Comments arrive with KOV-020.</li></ul><p>The detail view renders this Markdown, so it exercises a heading, a list, bold text, <code>inline code</code>, and a <a href="#">link</a>.</p><pre>kova issue acm-1</pre>`;
 
   const I = (id, title, status, priority, assignee, o = {}) => ({
     id, project: id.split('-')[0], number: +id.split('-')[1], title, status, priority, assignee,
@@ -53,38 +53,38 @@
   });
 
   const issues = [
-    I('DAL-1', 'Ship the issue read slice', 'in_progress', 'high', 'mira', { labels: ['web', 'api'], due: '2026-10-17', sprint: 'DAL-S4', est: 5, desc: DAL1_MD, created: '17 Aug',
+    I('ACM-1', 'Ship the issue read slice', 'in_progress', 'high', 'mira', { labels: ['web', 'api'], due: '2026-10-17', sprint: 'ACM-S4', est: 5, desc: DAL1_MD, created: '17 Aug',
       comments: [
         { who: 'ada', when: '2 days ago', text: 'The read slice is the spine everything else hangs off. Let’s keep the Markdown renderer strict.' },
-        { who: 'mira', when: 'Yesterday', text: 'Agreed. I’ve pinned the fixture so DAL-1 stays a published address in the README and the CLI help.' },
+        { who: 'mira', when: 'Yesterday', text: 'Agreed. I’ve pinned the fixture so ACM-1 stays a published address in the README and the CLI help.' },
       ],
       log: [{ who: 'kd', text: 'created the issue', when: '17 Aug' }, { who: 'kd', text: 'assigned it to Mira Member', when: '6 Oct' }, { who: 'mira', text: 'moved it to In progress', when: '7 Oct' }] }),
-    I('DAL-2', 'Render Markdown safely', 'todo', 'none', null, { labels: ['web'], est: 2 }),
-    I('DAL-3', 'Make the issue list keyboard navigable', 'in_progress', 'high', ME, { labels: ['web'], due: '2026-10-19', sprint: 'DAL-S4', est: 3,
+    I('ACM-2', 'Render Markdown safely', 'todo', 'none', null, { labels: ['web'], est: 2 }),
+    I('ACM-3', 'Make the issue list keyboard navigable', 'in_progress', 'high', ME, { labels: ['web'], due: '2026-10-19', sprint: 'ACM-S4', est: 3,
       desc: '<p>Arrow keys and <code>j</code>/<code>k</code> move through the list, <code>Enter</code> opens the issue, and focus is never lost to the page when the list re-renders.</p>' }),
-    I('DAL-4', 'Review the search projection design', 'in_review', 'medium', 'mira', { labels: ['db'], due: '2026-10-16', sprint: 'DAL-S4', est: 2 }),
-    I('DAL-5', 'Unblock the local Supabase stack', 'blocked', 'urgent', ME, { labels: ['db'], due: '2026-10-14', sprint: 'DAL-S4', est: 3,
+    I('ACM-4', 'Review the search projection design', 'in_review', 'medium', 'mira', { labels: ['db'], due: '2026-10-16', sprint: 'ACM-S4', est: 2 }),
+    I('ACM-5', 'Unblock the local Supabase stack', 'blocked', 'urgent', ME, { labels: ['db'], due: '2026-10-14', sprint: 'ACM-S4', est: 3,
       desc: '<p>The stack refuses to start on a clean checkout: the storage container cannot reach the database on the pinned network.</p>' }),
-    I('DAL-6', 'Archive the first milestone notes', 'done', 'low', 'ada', { labels: ['docs'], sprint: 'DAL-S3', est: 1 }),
-    I('DAL-7', 'Retire the legacy board experiment', 'cancelled', 'none', null, { labels: [] }),
-    I('DAL-8', 'Draft the CLI error contract', 'todo', 'medium', ME, { labels: ['cli', 'api'], due: '2026-10-22', sprint: 'DAL-S4', est: 3 }),
-    I('DAL-9', 'Prove the end-to-end milestone', 'done', 'high', 'ada', { labels: ['web', 'cli'], sprint: 'DAL-S4', est: 8 }),
-    I('DAL-10', 'Render the offline page in both themes', 'todo', 'low', null, { labels: ['web'], est: 2 }),
-    I('DAL-11', 'Let a person name a Document Version', 'todo', 'medium', null, { labels: ['docs'], est: 3 }),
-    I('DAL-12', 'Import a folder of Markdown as a Draft subtree', 'todo', 'high', null, { labels: ['docs'], est: 5 }),
-    I('REN-1', 'Load the Renigo order history into the warehouse', 'in_progress', 'urgent', ME, { labels: ['client', 'db'], due: '2026-10-18', sprint: 'REN-S2', est: 5 }),
-    I('REN-2', 'Write the reconciliation report the client signs', 'todo', 'medium', 'mira', { labels: ['client'], due: '2026-10-24', sprint: 'REN-S2', est: 3 }),
-    I('REN-3', 'Decide what to do with the duplicate customer rows', 'blocked', 'high', 'ada', { labels: ['client'], sprint: 'REN-S2', est: 2 }),
-    I('REN-4', 'Model the fulfilment funnel', 'in_review', 'medium', 'mira', { labels: ['db'], sprint: 'REN-S2', est: 3 }),
-    I('REN-5', 'Agree the refresh cadence with the client', 'done', 'low', null, { labels: ['client'], est: 1 }),
-    I('REN-6', 'Hand the pipeline over to the client’s analyst', 'todo', 'low', null, { labels: ['client'], est: 2 }),
-    I('REN-7', 'Drop the abandoned CRM export spike', 'cancelled', 'none', null, {}),
+    I('ACM-6', 'Archive the first milestone notes', 'done', 'low', 'ada', { labels: ['docs'], sprint: 'ACM-S3', est: 1 }),
+    I('ACM-7', 'Retire the legacy board experiment', 'cancelled', 'none', null, { labels: [] }),
+    I('ACM-8', 'Draft the CLI error contract', 'todo', 'medium', ME, { labels: ['cli', 'api'], due: '2026-10-22', sprint: 'ACM-S4', est: 3 }),
+    I('ACM-9', 'Prove the end-to-end milestone', 'done', 'high', 'ada', { labels: ['web', 'cli'], sprint: 'ACM-S4', est: 8 }),
+    I('ACM-10', 'Render the offline page in both themes', 'todo', 'low', null, { labels: ['web'], est: 2 }),
+    I('ACM-11', 'Let a person name a Document Version', 'todo', 'medium', null, { labels: ['docs'], est: 3 }),
+    I('ACM-12', 'Import a folder of Markdown as a Draft subtree', 'todo', 'high', null, { labels: ['docs'], est: 5 }),
+    I('BLU-1', 'Load the Bluebird order history into the warehouse', 'in_progress', 'urgent', ME, { labels: ['client', 'db'], due: '2026-10-18', sprint: 'BLU-S2', est: 5 }),
+    I('BLU-2', 'Write the reconciliation report the client signs', 'todo', 'medium', 'mira', { labels: ['client'], due: '2026-10-24', sprint: 'BLU-S2', est: 3 }),
+    I('BLU-3', 'Decide what to do with the duplicate customer rows', 'blocked', 'high', 'ada', { labels: ['client'], sprint: 'BLU-S2', est: 2 }),
+    I('BLU-4', 'Model the fulfilment funnel', 'in_review', 'medium', 'mira', { labels: ['db'], sprint: 'BLU-S2', est: 3 }),
+    I('BLU-5', 'Agree the refresh cadence with the client', 'done', 'low', null, { labels: ['client'], est: 1 }),
+    I('BLU-6', 'Hand the pipeline over to the client’s analyst', 'todo', 'low', null, { labels: ['client'], est: 2 }),
+    I('BLU-7', 'Drop the abandoned CRM export spike', 'cancelled', 'none', null, {}),
     I('INT-1', 'Write the onboarding checklist a new joiner actually reads', 'todo', 'medium', 'ada', { labels: ['docs'], sprint: 'INT-S1', due: '2026-10-30' }),
     I('INT-2', 'Rotate the shared mailbox credentials', 'in_progress', 'high', ME, { sprint: 'INT-S1', due: '2026-10-20' }),
     I('INT-3', 'Decide whether the studio keeps a weekly demo', 'todo', 'low', 'mira', { sprint: 'INT-S1' }),
     I('INT-4', 'Retire the shared spreadsheet of client contacts', 'cancelled', 'low', null, {}),
-    I('ATL-1', 'Write down what the Atlas client still has to run', 'in_review', 'high', 'ada', {}),
-    I('ATL-2', 'Close the Atlas infrastructure account', 'todo', 'medium', null, {}),
+    I('NGT-1', 'Write down what the Northgate client still has to run', 'in_review', 'high', 'ada', {}),
+    I('NGT-2', 'Close the Northgate infrastructure account', 'todo', 'medium', null, {}),
   ];
 
   const STATUS = {
@@ -109,25 +109,25 @@
   const OPEN = ['todo', 'in_progress', 'in_review', 'blocked'];
 
   const activity = [
-    { who: 'mira', icon: 'eye', text: 'sent <b>DAL-4</b> for review', project: 'DAL', when: '18 min ago' },
-    { who: 'ada', icon: 'circle-check', text: 'completed <b>DAL-9</b> Prove the end-to-end milestone', project: 'DAL', when: '1 hour ago' },
-    { who: 'kd', icon: 'alert-triangle', text: 'marked <b>DAL-5</b> as Blocked', project: 'DAL', when: '3 hours ago' },
-    { who: 'mira', icon: 'file-text', text: 'edited <b>Renigo data platform</b>', project: 'REN', when: 'Yesterday' },
-    { who: 'ada', icon: 'message', text: 'commented on <b>DAL-1</b>', project: 'DAL', when: 'Yesterday' },
-    { who: 'ada', icon: 'user-plus', text: 'assigned <b>REN-1</b> to Kova Developer', project: 'REN', when: '2 days ago' },
+    { who: 'mira', icon: 'eye', text: 'sent <b>ACM-4</b> for review', project: 'ACM', when: '18 min ago' },
+    { who: 'ada', icon: 'circle-check', text: 'completed <b>ACM-9</b> Prove the end-to-end milestone', project: 'ACM', when: '1 hour ago' },
+    { who: 'kd', icon: 'alert-triangle', text: 'marked <b>ACM-5</b> as Blocked', project: 'ACM', when: '3 hours ago' },
+    { who: 'mira', icon: 'file-text', text: 'edited <b>Bluebird data platform</b>', project: 'BLU', when: 'Yesterday' },
+    { who: 'ada', icon: 'message', text: 'commented on <b>ACM-1</b>', project: 'ACM', when: 'Yesterday' },
+    { who: 'ada', icon: 'user-plus', text: 'assigned <b>BLU-1</b> to Kova Owner', project: 'BLU', when: '2 days ago' },
   ];
 
   const notifications = [
-    { id: 'n1', who: 'mira', text: 'sent <b>DAL-4</b> Review the search projection design for your review', go: '/issues/DAL-4', when: '18 min ago', read: false },
-    { id: 'n2', who: 'ada', text: 'assigned <b>REN-1</b> Load the Renigo order history into the warehouse to you', go: '/issues/REN-1', when: '2 days ago', read: false },
-    { id: 'n3', who: 'ada', text: 'invited <b>pat@xkye.dev</b> to Kova', go: '/admin/members', when: '5 days ago', read: false },
-    { id: 'n4', who: 'ada', text: 'assigned <b>DAL-5</b> Unblock the local Supabase stack to you', go: '/issues/DAL-5', when: '6 Oct', read: true },
+    { id: 'n1', who: 'mira', text: 'sent <b>ACM-4</b> Review the search projection design for your review', go: '/issues/ACM-4', when: '18 min ago', read: false },
+    { id: 'n2', who: 'ada', text: 'assigned <b>BLU-1</b> Load the Bluebird order history into the warehouse to you', go: '/issues/BLU-1', when: '2 days ago', read: false },
+    { id: 'n3', who: 'ada', text: 'invited <b>pat@company.com</b> to Kova', go: '/admin/members', when: '5 days ago', read: false },
+    { id: 'n4', who: 'ada', text: 'assigned <b>ACM-5</b> Unblock the local Supabase stack to you', go: '/issues/ACM-5', when: '6 Oct', read: true },
   ];
 
   // ---- Kova Docs ----
   const spaces = [
-    { project: 'DAL', slug: 'DAL', name: 'Dalqen' },
-    { project: 'REN', slug: 'REN', name: 'Renigo' },
+    { project: 'ACM', slug: 'ACM', name: 'Acme' },
+    { project: 'BLU', slug: 'BLU', name: 'Bluebird' },
     { project: 'INT', slug: 'xkye-handbook', name: 'Xkye handbook' },
   ];
   const COVERS = [
@@ -141,15 +141,17 @@
   const EMOJI = ['🧭', '🏛️', '📐', '🔎', '🗺️', '🧪', '📦', '🚀', '📝', '📚', '🧱', '⚙️', '🌱', '🛠️', '📊', '🧩', '💡', '✅', '🔐', '🗂️', '🛰️', '🎯', '🧵', '☕'];
 
   const docs = [
-    { id: 'sprint-4-review', space: 'DAL', title: 'Sprint 4 review', icon: '🧭', cover: COVERS[0], parent: null, draft: true, author: ME, collaborators: ['mira'], star: true, edited: '4 min ago', recent: 1 },
-    { id: 'architecture-overview', space: 'DAL', title: 'Architecture overview', icon: '🏛️', cover: COVERS[1], parent: null, draft: false, author: 'ada', star: true, edited: 'Yesterday', recent: 2 },
-    { id: 'search-projection-notes', space: 'DAL', title: 'Search projection notes', icon: '🔎', cover: null, parent: 'architecture-overview', draft: false, author: 'mira', edited: '2 days ago', recent: 3 },
-    { id: 'the-v1-content-model', space: 'DAL', title: 'The V1 content model', icon: '📐', cover: null, parent: 'architecture-overview', draft: false, author: 'kd', edited: '1 Oct' },
-    { id: 'retired-board-experiment', space: 'DAL', title: 'Retired board experiment', icon: '🧪', cover: null, parent: null, draft: false, author: 'kd', edited: '22 Sep' },
-    { id: 'renigo-data-platform', space: 'REN', title: 'Renigo data platform', icon: '📦', cover: COVERS[3], parent: null, draft: false, author: 'mira', edited: 'Yesterday', recent: 4 },
+    { id: 'sprint-4-review', space: 'ACM', title: 'Sprint 4 review', icon: '🧭', cover: COVERS[0], parent: null, draft: true, author: ME, collaborators: ['mira'], star: true, edited: '4 min ago', recent: 1 },
+    { id: 'architecture-overview', space: 'ACM', title: 'Architecture overview', icon: '🏛️', cover: COVERS[1], parent: null, draft: false, author: 'ada', star: true, edited: 'Yesterday', recent: 2 },
+    { id: 'search-projection-notes', space: 'ACM', title: 'Search projection notes', icon: '🔎', cover: null, parent: 'architecture-overview', draft: false, author: 'mira', edited: '2 days ago', recent: 3 },
+    { id: 'the-v1-content-model', space: 'ACM', title: 'The V1 content model', icon: '📐', cover: null, parent: 'architecture-overview', draft: false, author: 'kd', edited: '1 Oct' },
+    { id: 'retired-board-experiment', space: 'ACM', title: 'Retired board experiment', icon: '🧪', cover: null, parent: null, draft: false, author: 'kd', edited: '22 Sep', archived: '3 Oct' },
+    { id: 'old-deploy-runbook', space: 'ACM', title: 'Old deploy runbook', icon: '🛠️', cover: null, parent: null, draft: false, author: 'ada', edited: '2 Sep', archived: '20 Sep', trashed: 9 },
+    { id: 'bluebird-data-platform', space: 'BLU', title: 'Bluebird data platform', icon: '📦', cover: COVERS[3], parent: null, draft: false, author: 'mira', edited: 'Yesterday', recent: 4 },
     { id: 'studio-handbook', space: 'xkye-handbook', title: 'Studio handbook', icon: '📚', cover: COVERS[2], parent: null, draft: false, author: 'ada', edited: '30 Sep', recent: 5 },
     { id: 'onboarding-checklist', space: 'xkye-handbook', title: 'Onboarding checklist', icon: '✅', cover: null, parent: 'studio-handbook', draft: false, author: 'ada', edited: '30 Sep' },
     { id: 'how-we-run-a-client-engagement', space: 'xkye-handbook', title: 'How we run a client engagement', icon: '🧵', cover: null, parent: 'studio-handbook', draft: false, author: 'kd', edited: '19 Sep' },
+    { id: 'q3-offsite-notes', space: 'xkye-handbook', title: 'Q3 offsite notes', icon: '☕', cover: null, parent: null, draft: true, author: ME, collaborators: [], edited: '21 Sep', trashed: 26 },
   ];
 
   const ref = (id) => `<span class="ref" contenteditable="false" data-ref="${id}" data-go="/issues/${id}"></span>`;
@@ -158,11 +160,11 @@
     'sprint-4-review': () => [
       `<div class="toc" contenteditable="false" data-toc></div>`,
       `<h2 contenteditable="true">Where the sprint stands</h2>`,
-      P(`We committed to 24 points across six issues. The search projection ${ref('DAL-4')} is with <span class="mention">@Kova Developer</span> for review, and <mark class="anchor" data-thread="t1">the local stack is still blocked</mark> ${ref('DAL-5')}.`),
-      `<div class="embed" contenteditable="false" data-embed="project=DAL&amp;placement=current&amp;status=todo,in_progress,in_review,blocked"></div>`,
+      P(`We committed to 24 points across six issues. The search projection ${ref('ACM-4')} is with <span class="mention">@Kova Owner</span> for review, and <mark class="anchor" data-thread="t1">the local stack is still blocked</mark> ${ref('ACM-5')}.`),
+      `<div class="embed" contenteditable="false" data-embed="project=ACM&amp;placement=current&amp;status=todo,in_progress,in_review,blocked"></div>`,
       `<div class="callout" contenteditable="false"><span class="e">💡</span><div contenteditable="true">This list is an Embed, drawn live from a Filter. Move an issue on the board and it changes here without anyone editing the page.</div></div>`,
       `<h2 contenteditable="true">What we learned</h2>`,
-      `<ul><li contenteditable="true">Keyboard navigation on the issue list needed a real focus model, not a tabindex on every row.</li><li contenteditable="true">Pinning the fixture made <code>DAL-1</code> a published address we can rely on in the docs and the CLI help.</li></ul>`,
+      `<ul><li contenteditable="true">Keyboard navigation on the issue list needed a real focus model, not a tabindex on every row.</li><li contenteditable="true">Pinning the fixture made <code>ACM-1</code> a published address we can rely on in the docs and the CLI help.</li></ul>`,
       `<h3 contenteditable="true">Decisions</h3>`,
       P('Markdown renders through one strict pipeline, on the web and in the terminal.'),
       `<details class="toggle" contenteditable="false"><summary><i class="ti ti-chevron-right"></i> What we cut from this sprint</summary><div><p contenteditable="true">The graph database spike and a second board layout. Both are written down in Retired board experiment, so nobody has to rediscover why.</p></div></details>`,
@@ -177,7 +179,7 @@
       P('Product behaviour lives in the application package, not in routes or handlers. A use case takes a resolved actor, reads and writes through repository interfaces the application owns, and returns a result.'),
       `<div class="callout" contenteditable="false"><span class="e">🔐</span><div contenteditable="true">Every request to /api/v1 has an actor. There is no development backdoor, and an unknown credential fails closed with its own error code.</div></div>`,
       `<h2 contenteditable="true">One contract for the browser and the terminal</h2>`,
-      P(`The CLI and the browser cross the same versioned seam. Every response carries an API version and a request id, and failures share one error envelope. ${ref('DAL-8')} writes the CLI side of it down.`),
+      P(`The CLI and the browser cross the same versioned seam. Every response carries an API version and a request id, and failures share one error envelope. ${ref('ACM-8')} writes the CLI side of it down.`),
       `<h3 contenteditable="true">Row level security</h3>`,
       P('Grants and policies ship together in migrations. New tables are unreachable until a migration says otherwise, so a table someone forgets to grant stays closed.'),
     ].join(''),
@@ -204,7 +206,7 @@
 
   const tokens = [
     { id: 'tk1', name: 'Laptop CLI', scope: 'Every Project I can reach', created: '2 Oct', used: 'Today', expires: '31 Dec 2026' },
-    { id: 'tk2', name: 'CI read access', scope: 'Dalqen only', created: '18 Sep', used: '3 days ago', expires: '18 Mar 2027' },
+    { id: 'tk2', name: 'CI read access', scope: 'Acme only', created: '18 Sep', used: '3 days ago', expires: '18 Mar 2027' },
   ];
 
   // ----------------------------------------------------------------- state --
@@ -224,7 +226,7 @@
     viewVersion: null,
     kb: -1,           // keyboard row in the issue list
     attention: [
-      { id: 'att-pat', icon: 'mail-off', title: 'Pat Pending’s invitation has expired', sub: 'Sent to pat@xkye.dev 5 days ago. Nobody can accept it until it is sent again.', acts: [['Send again', 'resend'], ['Cancel invitation', 'cancelInvite']] },
+      { id: 'att-pat', icon: 'mail-off', title: 'Pat Pending’s invitation has expired', sub: 'Sent to pat@company.com 5 days ago. Nobody can accept it until it is sent again.', acts: [['Send again', 'resend'], ['Cancel invitation', 'cancelInvite']] },
       { id: 'att-sam', icon: 'user-pause', title: 'Sam Suspended has been suspended for 64 days', sub: 'Past the 60-day review period. Restore them, remove them from Kova, or keep things as they are.', acts: [['Restore', 'restoreSam'], ['Remove from Kova', 'removeSam'], ['Keep as is', 'keepSam']] },
     ],
   };
@@ -303,12 +305,14 @@
 
   function nav(path, { keep = false } = {}) {
     if (!keep) { S.pop = null; S.notif = false; S.palette = null; S.dialog = null; }
-    if (path !== S.path) { S.kb = -1; S.viewVersion = null; }
+    const moved = path !== S.path;
+    if (moved) { S.kb = -1; S.viewVersion = null; }
     S.path = path;
     const r = parse(path);
     remembered[areaOf(r)] = path;
     render();
     $('.main')?.scrollTo(0, 0);
+    if (moved) $('.main')?.classList.add('enter');
     report();
   }
 
@@ -374,10 +378,10 @@
       <img src="assets/brand/kova-horizontal-color.svg" alt="Kova" />
       <h1>Sign in to Kova</h1>
       <p class="muted" style="margin:0 0 6px">Accounts are created by an Owner’s invitation. There is no public sign-up.</p>
-      <label class="f" for="em">Email</label><input class="input" id="em" type="email" value="developer@xkye.dev" autocomplete="username" />
+      <label class="f" for="em">Email</label><input class="input" id="em" type="email" value="owner@company.com" autocomplete="username" />
       <label class="f" for="pw">Password</label><input class="input" id="pw" type="password" value="kova-local-only" autocomplete="current-password" />
       <button class="btn primary" style="width:100%;justify-content:center;margin-top:18px;height:34px">Sign in</button>
-      <p class="subtle" style="font-size:12px;margin:14px 0 0;text-align:center">Prototype: any password signs you in as Kova Developer, an Owner.</p>
+      <p class="subtle" style="font-size:12px;margin:14px 0 0;text-align:center">Prototype: any password signs you in as Kova Owner, an Owner.</p>
     </form></div>`;
   }
 
@@ -388,7 +392,7 @@
       <button class="area-btn" data-act="area" data-area="docs" aria-current="${area === 'docs'}" title="Kova Docs"><img src="assets/brand/docs-symbol-color.svg" alt="Kova Docs" /></button>
       <button class="area-btn" data-act="area" data-area="admin" aria-current="${area === 'admin'}" title="Admin"><i class="ti ti-shield-half"></i>${att ? `<span class="count">${att}</span>` : ''}</button>
       <span class="grow"></span>
-      <button class="area-btn" data-act="userMenu" title="Kova Developer">${avatar(ME)}</button>
+      <button class="area-btn" data-act="userMenu" title="Kova Owner">${avatar(ME)}</button>
     </nav>`;
   }
 
@@ -486,14 +490,14 @@
         <button class="btn primary" data-act="newIssue"><i class="ti ti-plus"></i> New issue</button></div>
       <div class="stats">
         <button class="card stat" data-go="/issues?assignee=me&status=todo,in_progress,in_review,blocked" style="text-align:left"><div class="n">${mine.length}</div><div class="l">Assigned to you, open</div></button>
-        <button class="card stat" data-go="/issues/DAL-4" style="text-align:left"><div class="n">${review}</div><div class="l">Waiting on your review</div></button>
+        <button class="card stat" data-go="/issues/ACM-4" style="text-align:left"><div class="n">${review}</div><div class="l">Waiting on your review</div></button>
         <button class="card stat" data-go="/my-work" style="text-align:left"><div class="n">${dueSoon}</div><div class="l">Yours due in the next week</div></button>
         <button class="card stat hot" data-go="/issues?status=blocked" style="text-align:left"><div class="n">${blocked}</div><div class="l">Blocked across Projects</div></button>
       </div>
       <div class="grid2">
         <div class="stack">
           <section class="card"><div class="card-h"><i class="ti ti-checklist"></i>Assigned to you<span class="end"><a class="subtle" href="#" data-go="/my-work">My Work</a></span></div><ul class="rows">${mine.map((i) => issueRow(i)).join('')}</ul></section>
-          <section class="card"><div class="card-h"><i class="ti ti-player-play"></i>Running Sprints</div>${['DAL', 'REN', 'INT'].map(sprintSummary).join('')}</section>
+          <section class="card"><div class="card-h"><i class="ti ti-player-play"></i>Running Sprints</div>${['ACM', 'BLU', 'INT'].map(sprintSummary).join('')}</section>
         </div>
         <div class="stack">
           <section class="card"><div class="card-h"><i class="ti ti-history"></i>Lately in your Projects</div><div style="padding:4px 14px">${feed(activity.slice(0, 6))}</div></section>
@@ -684,7 +688,7 @@
     if (!t) return { is: [], ds: [] };
     return {
       is: issues.filter((i) => (i.id + ' ' + i.title).toLowerCase().includes(t)).slice(0, 8),
-      ds: docs.filter((d) => !d.trashed && d.title.toLowerCase().includes(t)).slice(0, 6),
+      ds: docs.filter((d) => d.trashed == null && !d.archived && d.title.toLowerCase().includes(t)).slice(0, 6),
     };
   }
   function searchPage(q) {
@@ -693,7 +697,7 @@
       <div class="home-search" style="margin-bottom:16px"><i class="ti ti-search"></i><input class="input" id="search-page" value="${esc(q)}" placeholder="Search issues and documents" aria-label="Search" /></div>
       <div id="search-results">${searchResults(q, is, ds)}</div></div>`;
   }
-  const searchResults = (q, is, ds) => !q.trim() ? '<p class="subtle">Try “search”, “sprint” or an issue key like DAL-5.</p>'
+  const searchResults = (q, is, ds) => !q.trim() ? '<p class="subtle">Try “search”, “sprint” or an issue key like ACM-5.</p>'
     : `<section class="card" style="max-width:820px;margin-bottom:12px"><div class="card-h">Issues <span class="subtle mono">${is.length}</span></div>${is.length ? `<ul class="rows">${is.map((i) => issueRow(i)).join('')}</ul>` : '<div class="empty">No issues match.</div>'}</section>
        <section class="card" style="max-width:820px"><div class="card-h">Documents <span class="subtle mono">${ds.length}</span></div>${ds.length ? `<ul class="rows">${ds.map((d) => `<li class="row" data-go="/docs/${d.space}/${d.id}"><span>${d.icon}</span><span class="title">${esc(d.title)}</span><span class="subtle">${esc(spaceOf(d.space).name)}</span></li>`).join('')}</ul>` : '<div class="empty">No documents match.</div>'}</section>`;
 
@@ -733,26 +737,28 @@
   // ---- Kova Docs ----
   function docsPanel(r) {
     const cur = r.n === 'doc' ? r.id : null;
-    const starred = docs.filter((d) => d.star && !d.trashed);
-    const visible = (d) => !d.trashed && (!d.draft || d.author === ME || d.collaborators?.includes(ME));
+    const starred = docs.filter((d) => d.star && d.trashed == null && !d.archived);
+    const visible = (d) => d.trashed == null && !d.archived && (!d.draft || d.author === ME || d.collaborators?.includes(ME));
     const tree = (space, parent, depth) => docs.filter((d) => d.space === space && d.parent === parent && visible(d)).map((d) => {
       const kids = docs.some((k) => k.parent === d.id && visible(k));
       return `<button class="tree-item" data-go="/docs/${d.space}/${d.id}" data-tree="${d.id}" ${cur === d.id ? 'aria-current="page"' : ''} style="padding-left:${6 + depth * 14}px"><span class="tw">${kids ? '<i class="ti ti-chevron-down"></i>' : ''}</span><span class="ico">${d.icon}</span><span class="lbl">${esc(d.title)}</span>${d.draft ? '<span class="chip draft" style="height:17px;font-size:10.5px">Draft</span>' : ''}</button>${kids ? tree(space, d.id, depth + 1) : ''}`;
     }).join('');
     return panelHead('Kova Docs', 'docSearch') + `<div class="panel-body">
       <button class="btn" style="width:100%;justify-content:center;margin:2px 0 6px" data-act="newDoc"><i class="ti ti-file-plus"></i> New document</button>
-      ${navItem('/docs', 'home', 'Docs home', r.n === 'docs')}
+      ${navItem('/docs', 'home', 'Docs home', r.n === 'docs' && !r.q.get('view'))}
       <div class="nav-group"><h6>Starred</h6>${starred.map((d) => `<button class="tree-item" data-go="/docs/${d.space}/${d.id}"><span class="tw"></span><span class="ico">${d.icon}</span><span class="lbl">${esc(d.title)}</span></button>`).join('') || '<div class="subtle" style="padding:2px 8px;font-size:12px">Star a Document to keep it here.</div>'}</div>
       ${spaces.map((s) => `<div class="nav-group"><h6 style="display:flex;align-items:center;gap:6px">${projIc(s.project, 14)} ${esc(s.name)}</h6>${tree(s.slug, null, 0)}</div>`).join('')}
-      <div class="nav-group">${navItem('/docs?view=trash', 'trash', 'Trash', false, docs.filter((d) => d.trashed).length || '')}</div>
+      <div class="nav-group">${navItem('/docs?view=archive', 'archive', 'Archive', r.q.get('view') === 'archive', docs.filter((d) => d.archived && d.trashed == null).length || '')}${navItem('/docs?view=trash', 'trash', 'Trash', r.q.get('view') === 'trash', docs.filter((d) => d.trashed != null).length || '')}</div>
     </div>`;
   }
 
   const coverCss = (c) => c ? (c.startsWith('#') ? `background:${c}` : `background:${c}`) : 'background:var(--surface-sunken)';
 
   function docsHome(r) {
+    if (r.q.get('view') === 'archive') return archivePage();
+    if (r.q.get('view') === 'trash') return trashPage();
     const proj = r.q.get('project');
-    const pool = docs.filter((d) => !d.trashed && (!d.draft || d.author === ME) && (!proj || spaceOf(d.space).project === proj));
+    const pool = docs.filter((d) => d.trashed == null && !d.archived && (!d.draft || d.author === ME) && (!proj || spaceOf(d.space).project === proj));
     const recent = [...pool].sort((a, b) => (a.recent || 99) - (b.recent || 99)).slice(0, 8);
     return `<div class="page"><div class="page-head"><div><h1>${proj ? `${esc(projectOf(proj).name)} docs` : 'Docs home'}</h1><div class="muted">${proj ? 'This Project’s Spaces, inside Kova Docs.' : 'Every Document you can read, across all your Projects.'}</div></div></div>
       <div style="display:flex;gap:8px;margin-bottom:22px"><div class="home-search" style="flex:1"><i class="ti ti-search"></i><input class="input" id="doc-filter" placeholder="Search documents" aria-label="Search documents" /></div>
@@ -761,25 +767,40 @@
       <div class="doc-tiles" id="doc-tiles">${recent.map(docTile).join('')}</div>
       <h3 style="font-size:13px;margin:26px 0 10px">Changed lately in your Projects</h3>
       <section class="card" style="max-width:820px"><ul class="rows">
-        <li class="row" data-go="/docs/REN/renigo-data-platform">${avatar('mira', 'sm')}<span class="title"><b style="font-weight:500">Mira Member</b> edited 📦 Renigo data platform</span><span class="subtle" style="font-size:12px">Yesterday</span></li>
-        <li class="row" data-go="/docs/DAL/architecture-overview">${avatar('ada', 'sm')}<span class="title"><b style="font-weight:500">Ada Admin</b> named a version of 🏛️ Architecture overview, “Reviewed by the team”</span><span class="subtle" style="font-size:12px">2 Oct</span></li>
+        <li class="row" data-go="/docs/BLU/bluebird-data-platform">${avatar('mira', 'sm')}<span class="title"><b style="font-weight:500">Mira Member</b> edited 📦 Bluebird data platform</span><span class="subtle" style="font-size:12px">Yesterday</span></li>
+        <li class="row" data-go="/docs/ACM/architecture-overview">${avatar('ada', 'sm')}<span class="title"><b style="font-weight:500">Ada Admin</b> named a version of 🏛️ Architecture overview, “Reviewed by the team”</span><span class="subtle" style="font-size:12px">2 Oct</span></li>
         <li class="row" data-go="/docs/xkye-handbook/onboarding-checklist">${avatar('ada', 'sm')}<span class="title"><b style="font-weight:500">Ada Admin</b> published ✅ Onboarding checklist</span><span class="subtle" style="font-size:12px">30 Sep</span></li>
       </ul></section></div>`;
+  }
+  const docRow = (d, info, acts) => `<li class="row" style="cursor:default"><span style="font-size:16px">${d.icon}</span><span class="title"><b style="font-weight:500">${esc(d.title)}</b><span class="subtle" style="font-size:12px;margin-left:8px">${esc(spaceOf(d.space).name)} · ${info}</span></span>${acts}</li>`;
+  function archivePage() {
+    const list = docs.filter((d) => d.archived && d.trashed == null);
+    return `<div class="page"><div class="page-head"><div><h1>Archive</h1><div class="muted">Retired Documents. They are out of the tree and default search and read-only, but they still open and links to them still work.</div></div></div>
+      <section class="card" style="max-width:820px"><ul class="rows">${list.map((d) => docRow(d, `archived ${d.archived}`, `<button class="btn sm ghost" data-go="/docs/${d.space}/${d.id}">Open</button><button class="btn sm" data-act="restoreDoc" data-id="${d.id}"><i class="ti ti-arrow-back-up"></i> Restore</button><button class="btn sm" data-act="deleteDoc" data-id="${d.id}" style="color:var(--danger)"><i class="ti ti-trash"></i> Move to Trash</button>`)).join('') || '<li class="row subtle" style="cursor:default">Nothing is archived.</li>'}</ul></section>
+      <p class="subtle" style="font-size:12px;max-width:820px">A published Document has to be archived before it can be deleted, so nothing everyone could read disappears in one step.</p></div>`;
+  }
+  function trashPage() {
+    const list = docs.filter((d) => d.trashed != null).sort((a, b) => b.trashed - a.trashed);
+    const left = (d) => 30 - d.trashed;
+    return `<div class="page"><div class="page-head"><div><h1>Trash</h1><div class="muted">Deleted Documents wait here for 30 days, and can be restored until then.</div></div></div>
+      <section class="card" style="max-width:820px"><ul class="rows">${list.map((d) => docRow(d, `${d.draft ? 'Draft' : 'was archived'} · <span style="color:${left(d) <= 7 ? 'var(--danger)' : 'inherit'}">purged in ${left(d)} day${left(d) === 1 ? '' : 's'}</span>`, `<button class="btn sm" data-act="restoreDoc" data-id="${d.id}"><i class="ti ti-arrow-back-up"></i> Restore</button>`)).join('') || '<li class="row subtle" style="cursor:default">The Trash is empty.</li>'}</ul></section>
+      <div class="notice" style="max-width:820px;margin-top:14px"><i class="ti ti-info-circle"></i><span>There is no purge button. After 30 days a Document is purged on its own, with its versions, Threads and Stars. Links and Embeds that pointed at it show “Deleted document” instead of the old title.</span></div></div>`;
   }
   const docTile = (d) => `<button class="doc-tile" data-go="/docs/${d.space}/${d.id}" data-title="${esc(d.title.toLowerCase())}"><div class="cv" style="${coverCss(d.cover)}"></div><div class="bd"><span class="ic">${d.icon}</span><b>${esc(d.title)}</b><span class="subtle" style="font-size:11.5px">${d.draft ? '<span class="chip draft" style="height:16px;font-size:10px">Draft</span> ' : ''}${esc(spaceOf(d.space).name)} · ${d.edited}</span></div></button>`;
 
   function docPage(r) {
     const d = docById(r.id);
-    if (!d || d.trashed) return view({ n: 'notfound' });
+    if (!d || d.trashed != null) return view({ n: 'notfound' });
     d.recent = 0.5; docs.forEach((x) => { if (x !== d && x.recent) x.recent += 0.01; });
     const sp = spaceOf(d.space);
     const parentDoc = d.parent && docById(d.parent);
     const openThreads = threads.filter((t) => t.doc === d.id && !t.resolved).length;
     if (d.html == null) d.html = (DOC_BODY[d.id] || (() => genericBody(d)))();
     const v = S.viewVersion && (versions[d.id] || []).find((x) => x.id === S.viewVersion);
+    const ro = v || d.archived;
     return `<div class="doc-top">
         <div class="crumbs">${projIc(sp.project, 16)}<span>${esc(sp.name)}</span>${parentDoc ? `<i class="ti ti-chevron-right" style="font-size:12px"></i><a href="#" data-go="/docs/${d.space}/${parentDoc.id}">${parentDoc.icon} ${esc(parentDoc.title)}</a>` : ''}<i class="ti ti-chevron-right" style="font-size:12px"></i><span style="color:var(--text-primary)">${d.icon} ${esc(d.title)}</span>
-          ${d.draft ? '<span class="chip draft" title="Only you and your Draft collaborators can see this"><i class="ti ti-lock"></i>Draft</span>' : ''}</div>
+          ${d.draft ? '<span class="chip draft" title="Only you and your Draft collaborators can see this"><i class="ti ti-lock"></i>Draft</span>' : ''}${d.archived ? '<span class="chip"><i class="ti ti-archive"></i>Archived</span>' : ''}</div>
         <span class="saved" id="saved">Saved</span>
         ${d.draft && d.author === ME ? `<button class="btn sm ghost" data-act="collaborators"><i class="ti ti-users"></i> ${d.collaborators.length ? d.collaborators.map((c) => avatar(c, 'sm')).join('') : 'Collaborators'}</button><button class="btn sm primary" data-act="publish">Publish</button>` : ''}
         <button class="icon-btn" data-act="star" aria-pressed="${!!d.star}" aria-label="${d.star ? 'Unstar' : 'Star'}"><i class="ti ti-star${d.star ? '-filled' : ''}" style="${d.star ? 'color:#cb912f' : ''}"></i></button>
@@ -787,15 +808,16 @@
         <button class="icon-btn" data-act="side" data-side="history" aria-label="Version history" style="${S.side === 'history' ? 'background:var(--surface-selected)' : ''}"><i class="ti ti-history"></i></button>
         <button class="icon-btn" data-act="docMenu" aria-label="More"><i class="ti ti-dots"></i></button>
       </div>
+      ${d.archived ? `<div class="banner"><i class="ti ti-archive"></i><span style="flex:1">Archived on <b>${d.archived}</b>. It is read-only and out of the tree and search, but links to it still work.</span><button class="btn sm" data-act="restoreDoc" data-id="${d.id}">Restore</button><button class="btn sm" data-act="deleteDoc" data-id="${d.id}" style="color:var(--danger)">Move to Trash</button></div>` : ''}
       ${v ? `<div class="banner"><i class="ti ti-history"></i><span style="flex:1">You are reading the version from <b>${v.when}</b>${v.name ? `, “${esc(v.name)}”` : ''}. It is read-only.</span><button class="btn sm" data-act="backToCurrent">Back to the current Document</button></div>` : ''}
       <div class="doc-wrap ${S.side ? 'side' : ''}">
         <div>
           <div class="cover" style="${d.cover ? coverCss(d.cover) : 'height:56px'}">${d.cover ? `<button class="btn sm chg" data-act="cover">Change cover</button>` : `<button class="btn sm ghost" style="position:absolute;left:calc(50% - 360px + 48px);bottom:4px" data-act="cover"><i class="ti ti-photo"></i> Add cover</button>`}</div>
           <div class="doc">
             <button class="doc-icon" data-act="emoji" aria-label="Change icon" style="${d.cover ? '' : 'margin-top:0'}">${d.icon}</button>
-            <h1 class="doc-title" id="doc-title" ${v ? '' : 'contenteditable="true"'} data-ph="Untitled">${esc(d.title)}</h1>
+            <h1 class="doc-title" id="doc-title" ${ro ? '' : 'contenteditable="true"'} data-ph="Untitled">${esc(d.title)}</h1>
             <div class="doc-meta">${avatar(d.author, 'sm')}<span>${esc(people[d.author].name)}</span><span>Edited ${d.edited}</span>${d.draft ? `<span>Visible to you${d.collaborators.length ? ` and ${d.collaborators.map(firstName).join(', ')}` : ''}</span>` : `<span>Visible to everyone in ${esc(projectOf(sp.project).name)}</span>`}</div>
-            <div class="ed" id="ed" data-doc="${d.id}" ${v ? 'data-readonly' : ''}>${d.html}</div>
+            <div class="ed" id="ed" data-doc="${d.id}" ${ro ? 'data-readonly' : ''}>${d.html}</div>
           </div>
         </div>
         <aside class="side" aria-label="${S.side === 'history' ? 'Version history' : 'Comments'}"><div class="side-in">${S.side === 'history' ? historyPanel(d) : S.side === 'comments' ? commentsPanel(d) : ''}</div></aside>
@@ -937,7 +959,7 @@
       return `<div class="pop" style="${style}">${opts.map(([v, lbl]) => `<button class="opt ${(i[p.prop] || '') === v ? 'sel' : ''}" data-act="setProp" data-prop="${p.prop}" data-id="${p.id}" data-value="${v}">${lbl}</button>`).join('')}</div>`;
     }
     if (p.kind === 'user') {
-      return `<div class="pop" style="left:58px;bottom:12px;top:auto;width:240px"><div style="display:flex;gap:10px;align-items:center;padding:6px 8px 10px">${avatar(ME, 'lg')}<div><b style="font-weight:600">Kova Developer</b><div class="subtle" style="font-size:12px">developer@xkye.dev · Owner</div></div></div><hr />
+      return `<div class="pop" style="left:58px;bottom:12px;top:auto;width:240px"><div style="display:flex;gap:10px;align-items:center;padding:6px 8px 10px">${avatar(ME, 'lg')}<div><b style="font-weight:600">Kova Owner</b><div class="subtle" style="font-size:12px">owner@company.com · Owner</div></div></div><hr />
         <div class="pop-h">Theme</div>${['light', 'dark'].map((t) => `<button class="opt ${S.theme === t ? 'sel' : ''}" data-act="theme" data-theme="${t}"><span class="ck"><i class="ti ti-check"></i></span>${t === 'light' ? 'Light' : 'Dark'}</button>`).join('')}<hr />
         <button class="opt" data-go="/settings/tokens"><i class="ti ti-key"></i>Personal access tokens</button>
         <button class="opt" data-act="signOut"><i class="ti ti-logout"></i>Sign out</button></div>`;
@@ -961,8 +983,9 @@
       return `<div class="pop" style="${style}">
         <button class="opt" data-act="copyLink"><i class="ti ti-link"></i>Copy link</button>
         <button class="opt" data-act="focusMode"><i class="ti ti-focus-2"></i>Focus mode</button><hr />
-        ${d.draft ? `<button class="opt" data-act="trashDoc" style="color:var(--danger)"><i class="ti ti-trash"></i>Move to Trash</button>` : `<button class="opt" data-act="archiveDoc"><i class="ti ti-archive"></i>Archive</button>`}
-        <div class="pop-h" style="padding-top:2px">${d.draft ? 'A Draft can go straight to the Trash.' : 'A published Document is archived before it can be deleted.'}</div></div>`;
+        ${d.archived ? `<button class="opt" data-act="restoreDoc" data-id="${d.id}"><i class="ti ti-arrow-back-up"></i>Restore</button>` : ''}
+        ${d.draft || d.archived ? `<button class="opt" data-act="trashDoc" style="color:var(--danger)"><i class="ti ti-trash"></i>Move to Trash</button>` : `<button class="opt" data-act="archiveDoc"><i class="ti ti-archive"></i>Archive</button>`}
+        <div class="pop-h" style="padding-top:2px">${d.draft ? 'A Draft can go straight to the Trash.' : d.archived ? 'It waits in the Trash for 30 days before it is purged.' : 'A published Document is archived before it can be deleted.'}</div></div>`;
     }
     return '';
   }
@@ -975,7 +998,7 @@
     { label: 'Toggle', icon: 'caret-right', html: () => `<details class="toggle" contenteditable="false" open><summary><i class="ti ti-chevron-right"></i> Toggle</summary><div><p contenteditable="true"></p></div></details>` },
     { label: 'Callout', icon: 'bulb', html: () => `<div class="callout" contenteditable="false"><span class="e">💡</span><div contenteditable="true"></div></div>` },
     { label: 'Table of contents', icon: 'list-tree', html: () => `<div class="toc" contenteditable="false" data-toc></div>` },
-    { label: 'Issue list', icon: 'list-details', html: () => `<div class="embed" contenteditable="false" data-embed="project=DAL&amp;status=blocked"></div>` },
+    { label: 'Issue list', icon: 'list-details', html: () => `<div class="embed" contenteditable="false" data-embed="project=ACM&amp;status=blocked"></div>` },
   ];
 
   function notifPop() {
@@ -1034,7 +1057,7 @@
     const cancel = `<button type="button" class="btn" data-act="closeAll">Cancel</button>`;
     switch (d.kind) {
       case 'newIssue': {
-        const pk = d.project || 'DAL';
+        const pk = d.project || 'ACM';
         return wrap('New issue', '', `
           <label class="f" for="ni-title">Title</label><input class="input" id="ni-title" data-autofocus placeholder="What needs doing?" required />
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
@@ -1062,14 +1085,14 @@
         return wrap('New document', 'It starts as a Draft that only you can see.', `<label class="f" for="nd-title">Title</label><input class="input" id="nd-title" data-autofocus placeholder="Untitled" />
           <label class="f" for="nd-space">Space</label><select class="input" id="nd-space">${spaces.map((s) => `<option value="${s.slug}">${esc(s.name)}</option>`).join('')}</select>`, `${cancel}<button class="btn primary">Create Draft</button>`);
       case 'invite':
-        return wrap('Invite someone to Kova', 'They can accept for 24 hours. You can send it again after that.', `<label class="f" for="iv-email">Email</label><input class="input" id="iv-email" type="email" data-autofocus placeholder="name@xkye.dev" required />
-          <div id="iv-domain" class="notice" style="display:none;margin-top:10px"><i class="ti ti-alert-circle"></i><label style="display:flex;gap:8px;align-items:flex-start"><span>This address isn’t at a usual email domain for Xkye (xkye.dev). <input type="checkbox" id="iv-ok" style="vertical-align:middle" /> I meant to invite it.</span></label></div>
-          <label class="f">Projects they can reach</label>${projects.filter((p) => p.status === 'active').map((p) => `<label style="display:flex;gap:8px;align-items:center;height:30px"><input type="checkbox" name="ivp" value="${p.key}" ${p.key === 'DAL' ? 'checked' : ''} />${projIc(p.key, 16)} ${esc(p.name)}</label>`).join('')}`,
+        return wrap('Invite someone to Kova', 'They can accept for 24 hours. You can send it again after that.', `<label class="f" for="iv-email">Email</label><input class="input" id="iv-email" type="email" data-autofocus placeholder="name@company.com" required />
+          <div id="iv-domain" class="notice" style="display:none;margin-top:10px"><i class="ti ti-alert-circle"></i><label style="display:flex;gap:8px;align-items:flex-start"><span>This address isn’t at a usual email domain for this company (company.com). <input type="checkbox" id="iv-ok" style="vertical-align:middle" /> I meant to invite it.</span></label></div>
+          <label class="f">Projects they can reach</label>${projects.filter((p) => p.status === 'active').map((p) => `<label style="display:flex;gap:8px;align-items:center;height:30px"><input type="checkbox" name="ivp" value="${p.key}" ${p.key === 'ACM' ? 'checked' : ''} />${projIc(p.key, 16)} ${esc(p.name)}</label>`).join('')}`,
           `${cancel}<button class="btn primary">Send invitation</button>`);
       case 'confirm':
         return wrap(d.title, '', `<div class="notice"><i class="ti ti-info-circle"></i><span>${d.body}</span></div>`, `${cancel}<button class="btn ${d.danger ? 'danger' : 'primary'}" data-autofocus>${d.ok}</button>`);
       case 'code':
-        return wrap('Enter the Confirmation code', `We emailed a six-digit code to developer@xkye.dev. The email names this act: <b style="color:var(--text-primary)">${esc(d.label)}</b>.`,
+        return wrap('Enter the Confirmation code', `We emailed a six-digit code to owner@company.com. The email names this act: <b style="color:var(--text-primary)">${esc(d.label)}</b>.`,
           `<div class="code-boxes" id="code-boxes">${[0, 1, 2, 3, 4, 5].map((n) => `<input inputmode="numeric" maxlength="1" aria-label="Digit ${n + 1}" ${n === 0 ? 'data-autofocus' : ''} />`).join('')}</div>
           <p class="subtle" style="font-size:12px;margin:8px 0 0">In this prototype, any six digits work. Once confirmed, guarded acts are let through in this browser for five minutes. The code confirms an act; it doesn’t sign anyone in.</p>`,
           `${cancel}<button class="btn primary" id="code-ok" disabled>Confirm</button>`);
@@ -1172,7 +1195,7 @@
     palPick(el) { palPick(+el.dataset.n); },
 
     // Admin
-    resend() { people.pat.expired = false; S.attention = S.attention.filter((a) => a.id !== 'att-pat'); render(); toast('Invitation sent again to pat@xkye.dev. It can be accepted for 24 hours.', 'mail'); },
+    resend() { people.pat.expired = false; S.attention = S.attention.filter((a) => a.id !== 'att-pat'); render(); toast('Invitation sent again to pat@company.com. It can be accepted for 24 hours.', 'mail'); },
     cancelInvite() { people.pat.status = 'removed'; S.attention = S.attention.filter((a) => a.id !== 'att-pat'); render(); toast('Invitation cancelled. Things are as they were before it was sent.'); },
     restoreSam() { people.sam.status = 'active'; people.sam.last = 'Just now'; S.attention = S.attention.filter((a) => a.id !== 'att-sam'); render(); toast('Sam Suspended restored. Their old assignments were not given back.'); },
     removeSam() { A.memberAct({ dataset: { do: 'remove', id: 'sam' } }); },
@@ -1214,8 +1237,27 @@
     setIcon(el) { const d = docById(parse(S.path).id); d.icon = el.dataset.e; S.pop = null; render(); },
     docMenu(el) { S.pop = popAt(el, { kind: 'docMenu' }, 'right'); renderLayer(); },
     focusMode() { S.pop = null; S.collapsed = true; S.side = null; render(); toast('Focus mode: the panel is folded. Press ⌘B to bring it back.', 'focus-2'); },
-    trashDoc() { const d = docById(parse(S.path).id); d.trashed = true; nav('/docs'); toast(`“${d.title}” moved to the Trash. It waits there for 30 days.`, 'trash'); },
-    archiveDoc() { const d = docById(parse(S.path).id); d.trashed = true; nav('/docs'); toast(`“${d.title}” archived. Links to it still work.`, 'archive'); },
+    trashDoc() { A.deleteDoc({ dataset: { id: parse(S.path).id } }); },
+    deleteDoc(el) {
+      const d = docById(el.dataset.id);
+      const sub = (x) => [x, ...docs.filter((k) => k.parent === x.id).flatMap(sub)];
+      sub(d).forEach((x) => { x.trashed = 0; });
+      nav('/docs?view=trash'); toast(`“${d.title}” moved to the Trash. It waits there for 30 days.`, 'trash');
+    },
+    archiveDoc() {
+      const d = docById(parse(S.path).id);
+      // Published Documents beneath are archived with it; a Draft beneath moves up out of the archived subtree.
+      const sub = (x) => docs.filter((k) => k.parent === x.id).forEach((k) => { if (k.draft) k.parent = d.parent; else { k.archived = '16 Oct'; sub(k); } });
+      d.archived = '16 Oct'; sub(d); S.pop = null;
+      render(); toast(`“${d.title}” archived. It still opens, and links to it still work.`, 'archive');
+    },
+    restoreDoc(el) {
+      const d = docById(el.dataset.id);
+      const fromTrash = d.trashed != null;
+      if (fromTrash) delete d.trashed; else d.archived = null;
+      S.pop = null; render();
+      toast(fromTrash ? `“${d.title}” restored${d.archived ? ' to the Archive' : ''}.` : `“${d.title}” restored. It is back in the tree and search.`, 'arrow-back-up');
+    },
     resolve(el) { const t = threads.find((x) => x.id === el.dataset.id); t.resolved = true; render(); toast('Thread resolved. You can reopen it from Resolved.'); },
     reopen(el) { const t = threads.find((x) => x.id === el.dataset.id); t.resolved = false; render(); },
     tocJump(el) { $('#' + el.dataset.to)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); },
@@ -1401,6 +1443,7 @@
     paletteSearch: (q) => { A.palette(); S.palette.q = q; $('#pal-in').value = q; renderPaletteResults(); },
     notifications: () => { S.notif = true; renderLayer(); },
     newIssue: () => A.newIssue(),
+    collapse: () => A.collapse(),
     publish: () => A.publish(),
     history: () => { S.side = 'history'; render(); },
     comments: () => { S.side = 'comments'; render(); },
@@ -1408,6 +1451,7 @@
     member: (id) => { const el = $(`[data-act="memberMenu"][data-id="${id}"]`); if (el) A.memberMenu(el); },
     theme: (t) => { S.theme = t; render(); report(); },
     tokens: () => A.newToken(),
+    docMenu: () => { const el = $('[data-act="docMenu"]'); if (el) A.docMenu(el); },
   };
 
   window.addEventListener('message', (e) => {
@@ -1417,6 +1461,7 @@
     if (m.theme) S.theme = m.theme;
     if (m.path) {
       S.side = m.side ?? (m.path.startsWith('/docs/') ? S.side : null);
+      if (m.action !== 'collapse') S.collapsed = false;
       nav(m.path);
     } else { render(); report(); }
     if (m.action && ACTIONS[m.action]) setTimeout(() => ACTIONS[m.action](m.arg), 160);
