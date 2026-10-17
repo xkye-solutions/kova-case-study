@@ -1,10 +1,10 @@
 # Kova — Case Study & Interactive Prototype
 
-> **Read-only Mirror.** This is maintained in Xkye Solutions' private monorepo and split here with its history. Changes made here are overwritten, so please don't open issues or pull requests. Live (unlisted) at <https://kova.xkye.app>. Built on [`case-study-kit`](https://github.com/xkye-solutions/case-study-kit) and [`brand`](https://github.com/xkye-solutions/brand), which are Mirrors too.
+> **Read-only Mirror.** This is maintained in Xkye Solutions' private monorepo and split here with its history. Changes made here are overwritten, so please don't open issues or pull requests. Live at <https://kova.xkye.app>. Built on [`case-study-kit`](https://github.com/xkye-solutions/case-study-kit) and [`brand`](https://github.com/xkye-solutions/brand), which are Mirrors too.
 
 A portfolio case study by **Xkye Solutions** for Kova, the studio's own project, issue and knowledge tool. The page tells the product story and embeds a live, clickable prototype of the Kova web app that follows along as you scroll.
 
-Built with Astro on the shared case-study kit (`@xkye/case-study-kit`) as a `desktop` Story; see the kit's README for how the pieces fit. The page asks not to be indexed while Kova is unlisted.
+Built with Astro on the shared case-study kit (`@xkye/case-study-kit`) as a `desktop` Story; see the kit's README for how the pieces fit.
 
 ## Running locally
 
@@ -83,4 +83,4 @@ Colours, type and logos follow the Kova brand kit (`brand/kova` in the monorepo)
 
 ## Deploying
 
-This Case Study lives in the `xkye-solutions` monorepo. `pnpm build` builds it into `dist/`, which Alchemy deploys to Cloudflare at `kova.xkye.app` (unlisted). Its source is split, with history, to the read-only `xkye-solutions/kova-case-study` Mirror.
+This Case Study lives in the `xkye-solutions` monorepo. `pnpm build` builds it into `dist/`, which Alchemy deploys to Cloudflare at `kova.xkye.app`. Its source is split, with history, to the read-only `xkye-solutions/kova-case-study` Mirror.

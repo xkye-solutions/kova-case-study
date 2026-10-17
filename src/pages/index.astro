@@ -1,6 +1,6 @@
 ---
 // Kova on the case-study kit, as a desktop Case Study. Narrative chapters are markup; key flows come from
-// src/content/flows. Unlisted: nothing links here yet, so it asks not to be indexed.
+// src/content/flows.
 import CaseStudy from '@xkye/case-study-kit/CaseStudy.astro';
 import Story from '@xkye/case-study-kit/Story.astro';
 import Chapter from '@xkye/case-study-kit/Chapter.astro';
@@ -20,7 +20,6 @@ const flows = (await getCollection('flows')).sort((a, b) => a.data.order - b.dat
   ogDescription="Issues, plans and documents in one tool that uses the same words everywhere. With a live interactive prototype."
 >
 <Fragment slot="head">
-<meta name="robots" content="noindex" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </Fragment>
