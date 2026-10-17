@@ -35,7 +35,6 @@
     --ink2: #2A3850;
     --muted: var(--slate);
     --accent: var(--action);
-    --strike: #9AA6B8;
     --heading: "Outfit", "Inter", system-ui, sans-serif;
     --font: "Inter", system-ui, sans-serif;
     --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
@@ -47,7 +46,7 @@
   a { color: inherit; }
   img { max-width: 100%; display: block; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+  .wrap { max-width: 1600px; margin: 0 auto; padding: 0 40px; }
   code, .mono { font-family: var(--mono); font-size: .86em; }
   p code { background: var(--mist); padding: 1px 6px; border-radius: 5px; color: var(--deep); }
 
@@ -64,29 +63,20 @@
 
   /* ---------- Hero ---------- */
   .hero { padding: 88px 0 72px; }
-  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 64px; align-items: center; }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; }
+  .shot { display: block; margin: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px rgba(6,20,45,.08), 0 40px 80px -30px rgba(6,20,45,.35); }
+  .shot img { display: block; width: 100%; height: auto; }
   .kicker { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
   .kicker img { width: 26px; height: 26px; }
   .hero h1 { font-family: var(--heading); font-weight: 700; font-size: clamp(42px, 5.6vw, 76px); line-height: 1.04; letter-spacing: -.028em; margin: 22px 0 24px; max-width: 14ch; }
   .lede { font-size: 20px; color: var(--ink2); max-width: 54ch; margin: 0; }
-  .meta { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 12px 44px; margin: 44px 0 0; }
+  .meta { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 12px 32px; margin: 44px 0 0; }
   .meta dt { font-size: 13px; color: var(--muted); }
   .meta dd { margin: 0; font-weight: 500; }
 
-  /* The hero's one memorable thing: a glossary entry, the way Kova's vocabulary is actually written. */
-  .entry { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px 30px; box-shadow: 0 30px 60px -30px rgba(6,20,45,.25); position: relative; }
-  .entry .term { font-family: var(--heading); font-weight: 600; font-size: 34px; letter-spacing: -.02em; line-height: 1.1; margin: 0 0 12px; }
-  .entry p { margin: 0 0 18px; color: var(--ink2); font-size: 16px; }
-  .entry .avoid { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); }
-  .entry .avoid s { text-decoration-color: var(--action); text-decoration-thickness: 2px; color: var(--strike); font-family: var(--mono); font-size: 13px; }
-  .entry .src { position: absolute; top: -12px; left: 26px; background: var(--navy); color: var(--paper); font-family: var(--mono); font-size: 11.5px; padding: 3px 10px; border-radius: 6px; }
-  .entry-cycle { display: flex; gap: 6px; margin-top: 22px; }
-  .entry-cycle button { width: 28px; height: 4px; border-radius: 2px; border: 0; background: var(--line); cursor: pointer; padding: 0; }
-  .entry-cycle button.on { background: var(--action); }
-
   /* ---------- Story + sticky app window ---------- */
-  .story { display: grid; grid-template-columns: minmax(320px, 400px) minmax(0, 1fr); gap: 56px; border-top: 1px solid var(--line); }
-  .stage { position: sticky; top: 64px; height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px 0; }
+  .story { display: grid; grid-template-columns: clamp(364px, 27vw, 420px) minmax(0, 1fr); gap: clamp(48px, 4vw, 64px); border-top: 1px solid var(--line); }
+  .stage { position: sticky; top: 64px; height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 88px 0 24px; }
   .window { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px rgba(6,20,45,.08), 0 40px 80px -30px rgba(6,20,45,.35); }
   .window-bar { height: 40px; display: flex; align-items: center; gap: 10px; padding: 0 12px; background: var(--navy); color: var(--paper); }
   .window-bar .addr { flex: 1; min-width: 0; height: 26px; border-radius: 7px; background: rgba(255,255,255,.08); display: flex; align-items: center; gap: 8px; padding: 0 10px; font-family: var(--mono); font-size: 12px; color: #C9D6EE; overflow: hidden; white-space: nowrap; }
@@ -99,7 +89,7 @@
   .stage-caption { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; margin-top: 14px; }
   .stage-caption .live { width: 8px; height: 8px; border-radius: 50%; background: #2bb15c; box-shadow: 0 0 0 4px rgba(43,177,92,.18); }
 
-  section.chapter { padding: 88px 0; border-bottom: 1px solid var(--line); min-height: 72vh; }
+  section.chapter { padding: 88px 0; border-bottom: 1px solid var(--line); }
   section.chapter:last-child { border-bottom: 0; }
   .num { font-family: var(--mono); font-size: 13px; color: var(--accent); }
   h2 { font-family: var(--heading); font-weight: 600; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.1; letter-spacing: -.025em; margin: 10px 0 20px; }
@@ -136,12 +126,19 @@
   .tries { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
   .try { display: inline-flex; align-items: center; gap: 8px; font: 600 14px var(--font); color: var(--action); background: var(--mist); border: 1px solid #D3E3FD; padding: 9px 15px; border-radius: 10px; cursor: pointer; }
   .try:hover { background: #DCEAFF; }
+  .lifecycle { list-style: none; padding: 0; margin: 24px 0 20px; display: grid; gap: 10px; }
+  .lifecycle li { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  .lifecycle b { display: flex; align-items: center; gap: 8px; font-family: var(--heading); font-weight: 600; font-size: 17px; }
+  .lifecycle b i { color: var(--action); font-size: 19px; }
+  .lifecycle p { margin: 4px 0 8px; font-size: 14.5px; line-height: 1.55; }
+  .lifecycle span { font-size: 12.5px; font-weight: 600; color: #14532d; }
+  .lifecycle span.no { color: #8c1c1c; }
   .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
   .before-after div { border-radius: 14px; padding: 14px 16px; font-size: 14.5px; line-height: 1.5; }
   .before-after .b { background: #EEF1F6; color: #4A5568; }
   .before-after .a { background: var(--mist); color: var(--deep); }
   .before-after small { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 4px; }
-  .addr-demo { margin-top: 20px; font-family: var(--mono); font-size: 13px; background: var(--navy); color: #C9D6EE; padding: 12px 14px; border-radius: 12px; overflow-x: auto; white-space: nowrap; }
+  .addr-demo { margin-top: 20px; font-family: var(--mono); font-size: 13px; background: var(--navy); color: #C9D6EE; padding: 12px 14px; border-radius: 12px; overflow-wrap: anywhere; }
   .addr-demo b { color: var(--cyan); font-weight: 500; }
 
   /* ---------- Bands ---------- */
@@ -153,27 +150,6 @@
   .band.dark .num { color: var(--cyan); }
 
   /* Vocabulary */
-  .vocab { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 28px; align-items: start; }
-  .ask { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px; position: sticky; top: 88px; }
-  .ask label { display: block; font-family: var(--heading); font-weight: 600; font-size: 20px; margin-bottom: 12px; }
-  .ask input { width: 100%; height: 48px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); padding: 0 16px; font: 16px var(--font); color: var(--ink); }
-  .ask input:focus { outline: 2px solid var(--action); border-color: transparent; }
-  .ask .hints { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-  .ask .hints button { font: 13px var(--mono); color: var(--muted); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 4px 9px; cursor: pointer; }
-  .ask .hints button:hover { color: var(--action); border-color: #C4D6F5; }
-  .answer { margin-top: 20px; min-height: 150px; }
-  .answer .say { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
-  .answer .term { font-family: var(--heading); font-weight: 600; font-size: 30px; letter-spacing: -.02em; line-height: 1.15; margin-bottom: 8px; }
-  .answer p { font-size: 15px; margin: 0; }
-  .terms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .term-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; text-align: left; font: inherit; color: inherit; cursor: pointer; }
-  .term-card:hover { border-color: #C4D6F5; }
-  .term-card.on { border-color: var(--action); box-shadow: 0 0 0 1px var(--action); }
-  .term-card b { font-family: var(--heading); font-weight: 600; font-size: 16.5px; display: block; }
-  .term-card span { font-size: 13px; color: var(--muted); display: block; line-height: 1.45; margin-top: 2px; }
-  .term-card s { font-family: var(--mono); font-size: 11.5px; color: var(--strike); text-decoration-color: var(--action); }
-  .group-h { grid-column: 1 / -1; font-size: 13px; color: var(--muted); margin: 10px 0 0; }
-  .group-h:first-child { margin-top: 0; }
 
   /* Terminal */
   .term-wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 40px; align-items: start; }
@@ -253,22 +229,19 @@
     .story { grid-template-columns: minmax(0, 1fr); gap: 0; }
     .stage { display: none; }
     .inline-proto { display: block; margin: 28px 0 0; }
-    .hero .wrap, .vocab, .term-wrap, .arch { grid-template-columns: minmax(0, 1fr); }
-    .ask { position: static; }
+    .hero .wrap, .term-wrap, .arch { grid-template-columns: minmax(0, 1fr); }
     .swatches { grid-template-columns: repeat(3, 1fr); }
     .ds-grid, .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 760px) {
     .nav-links { display: none; }
-    .terms, .ds-grid, .metrics, .logo-row { grid-template-columns: minmax(0, 1fr); }
+    .ds-grid, .metrics, .logo-row { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 620px) {
     .wrap { padding: 0 16px; }
     .hero { padding: 56px 0 48px; }
     .lede { font-size: 18px; }
     .meta { grid-template-columns: 1fr; gap: 12px; }
-    .entry { padding: 24px 20px; }
-    .entry .term { font-size: 28px; }
     .before-after { grid-template-columns: 1fr; }
     section.chapter { padding: 64px 0; min-height: 0; }
     .band { padding: 72px 0; }
@@ -287,7 +260,7 @@
     <nav class="nav-links" aria-label="Sections">
       <a href="#problem">Problem</a>
       <a href="#flows">Key flows</a>
-      <a href="#vocabulary">Vocabulary</a>
+      <a href="#vocabulary">Archive &amp; Trash</a>
       <a href="#terminal">Terminal</a>
       <a href="#engineering">Engineering</a>
       <a href="#system">Design system</a>
@@ -304,17 +277,11 @@
       <p class="lede">Kova is where Xkye plans its work, tracks every issue, and writes everything down. It runs in the browser and in the terminal, and every screen uses words we agreed on before we built it.</p>
       <dl class="meta">
         <div><dt>Studio</dt><dd>Xkye Solutions</dd></div>
-        <div><dt>Platform</dt><dd>Web app, installable PWA &amp; CLI</dd></div>
+        <div><dt>Platform</dt><dd>Web, PWA &amp; CLI</dd></div>
         <div><dt>Scope</dt><dd>Product, design &amp; engineering</dd></div>
       </dl>
     </div>
-    <figure class="entry" id="entry" aria-live="polite" style="margin:0">
-      <span class="src">CONTEXT.md</span>
-      <div class="term" id="entry-term">Suspend</div>
-      <p id="entry-def">To stop a member from using Kova without forgetting them: their memberships, history and name stay, their access tokens are revoked, and they can be restored.</p>
-      <div class="avoid" id="entry-avoid">Avoid <s>deactivate</s> <s>disable</s> <s>ban</s></div>
-      <div class="entry-cycle" id="entry-cycle" role="tablist" aria-label="Glossary examples"></div>
-    </figure>
+    <a class="shot" href="prototype.html#/projects/ACM/board" target="_blank" rel="noopener"><img src="assets/kova-board.png?v=3" width="880" height="560" alt="The Acme board in Kova: issues in Todo, In progress, In review, Blocked and Done" /></a>
   </div>
 </header>
 
@@ -324,10 +291,16 @@
     <section class="chapter" id="context" data-goto='{"path":"/"}'>
       <div class="num">Chapter 1</div>
       <h2>A studio that keeps its own house in order.</h2>
-      <p class="big">Xkye runs its own product, Dalqen, alongside client engagements like Renigo and the work of running the studio. Every one of them needs a backlog, a plan, and somewhere to write down what was decided and why.</p>
+      <p class="big">Xkye runs its own products alongside client engagements and the work of running the studio. Every one of them needs a backlog, a plan, and somewhere to write down what was decided and why.</p>
       <p>Kova is that place. It is a single installation for one company, built by the people who use it, and its own backlog has lived in Kova since the first working slice.</p>
+      <div class="tries">
+        <button class="try" data-goto='{"path":"/","action":"newIssue"}'><i class="ti ti-plus"></i> Create an issue</button>
+        <button class="try" data-goto='{"path":"/","action":"collapse"}'><i class="ti ti-layout-sidebar-left-collapse"></i> Fold the sidebar</button>
+        <button class="try" data-goto='{"path":"/","action":"palette"}'><i class="ti ti-command"></i> Search with ⌘K</button>
+        <button class="try" data-goto='{"path":"/docs"}'><i class="ti ti-file-text"></i> Switch to Kova Docs</button>
+      </div>
       <div class="inline-proto">
-        <div class="window"><div class="window-bar"><div class="addr"><i class="ti ti-lock"></i><span><b>kova</b> <span id="addrInline">/</span></span></div></div><div class="frame-holder" id="inlineHolder"><iframe src="prototype.html" title="Kova interactive prototype" loading="lazy" id="inlineFrame"></iframe></div></div>
+        <div class="window"><div class="window-bar"><div class="addr"><i class="ti ti-lock"></i><span><b>kova</b> <span id="addrInline">/</span></span></div></div><div class="frame-holder" id="inlineHolder"><iframe src="prototype.html?v=2" title="Kova interactive prototype" loading="lazy" id="inlineFrame"></iframe></div></div>
         <p style="font-size:14px;margin-top:12px">Kova is a desktop tool, so the prototype is easier to use <a href="prototype.html" target="_blank" rel="noopener">on its own, full screen</a>.</p>
       </div>
     </section>
@@ -349,13 +322,13 @@
       <h2>One roster, every state it can be in.</h2>
       <p>A person’s relationship with Kova is a real thing with a lifecycle, not a row in a users table. Owners govern the installation, and Project memberships decide what everyone else can reach.</p>
       <div class="roster" aria-label="The people in the prototype">
-        <div><i class="av" style="background:#0449D4">KD</i><span>Kova Developer<small>Owner: governs the installation, a full member of every Project</small></span><em style="background:#dcefe3;color:#14532d">Active</em></div>
+        <div><i class="av" style="background:#0449D4">KO</i><span>Kova Owner<small>Governs the installation, a full member of every Project</small></span><em style="background:#dcefe3;color:#14532d">Active</em></div>
         <div><i class="av" style="background:#7a52a0">AA</i><span>Ada Admin<small>A second Owner. At least one must always stay active.</small></span><em style="background:#dcefe3;color:#14532d">Active</em></div>
         <div><i class="av" style="background:#3b7253">MM</i><span>Mira Member<small>Reaches only the Projects she belongs to</small></span><em style="background:#dcefe3;color:#14532d">Active</em></div>
         <div><i class="av" style="background:#6f6e69">PP</i><span>Pat Pending<small>Invited, and the invitation lapsed after 24 hours</small></span><em style="background:#fdeed2;color:#7a4a08">Invited</em></div>
         <div><i class="av" style="background:#c0392f">SS</i><span>Sam Suspended<small>Can’t sign in, but their history and name stay</small></span><em style="background:#fbe3e3;color:#8c1c1c">Suspended</em></div>
       </div>
-      <p style="margin-top:18px;font-size:15px">These five come straight from the sample data the team develops against. Each one stands for a state the system has to handle, so every screen that shows “who” has a real answer to show.</p>
+      <p style="margin-top:18px;font-size:15px">These five are modelled on the sample data the team develops against. Each one stands for a state the system has to handle, so every screen that shows “who” has a real answer to show.</p>
     </section>
 
     <section class="chapter" id="principles" data-goto='{"path":"/issues?status=in_progress,blocked&assignee=me"}'>
@@ -390,7 +363,7 @@
     <section class="chapter" data-goto='{"path":"/issues?status=in_progress,blocked&assignee=me","action":"filter","arg":"priority"}'>
       <div class="flow-head"><div class="ic"><i class="ti ti-filter"></i></div><h2>Filters that are links</h2></div>
       <p style="margin-top:18px">Narrow any issue list by Status, Priority, Assignee, Project or Placement. Values within one field are alternatives, and fields narrow together. The whole Filter is carried in the address.</p>
-      <div class="addr-demo" aria-label="An example Filter address">/issues?<b>status</b>=in_progress,blocked&amp;<b>assignee</b>=me</div>
+      <div class="addr-demo" aria-label="An example Filter address">/issues?<wbr><b>status</b>=in_progress,<wbr>blocked&amp;<wbr><b>assignee</b>=me</div>
       <ul class="decisions">
         <li><i class="ti ti-circle-check"></i><span><b>“Me” and “Unassigned” are values,</b> not special views, so “my blocked work” is just a Filter.</span></li>
         <li><i class="ti ti-circle-check"></i><span><b>A Saved filter is named and private.</b> It shows up in your own panel and nobody else’s.</span></li>
@@ -400,7 +373,7 @@
       <div class="tries"><button class="try" data-goto='{"path":"/issues?status=in_progress,blocked&assignee=me","action":"filter","arg":"priority"}'><i class="ti ti-hand-finger"></i> Try narrowing the list</button></div>
     </section>
 
-    <section class="chapter" data-goto='{"path":"/projects/DAL/board"}'>
+    <section class="chapter" data-goto='{"path":"/projects/ACM/board"}'>
       <div class="flow-head"><div class="ic"><i class="ti ti-layout-kanban"></i></div><h2>Board and plan</h2></div>
       <p style="margin-top:18px">A Project’s screens sit in one row of tabs (Overview, Issues, Board, Plan, Docs and Settings) and every tab is a real address. The board moves work between statuses, and the plan moves it between the Backlog and Sprints.</p>
       <div class="before-after">
@@ -412,25 +385,25 @@
         <li><i class="ti ti-circle-check"></i><span><b>A new Project copies the Planning Defaults,</b> so changing the defaults later never rewrites a Project that already exists.</span></li>
       </ul>
       <div class="tries">
-        <button class="try" data-goto='{"path":"/projects/DAL/board"}'><i class="ti ti-hand-finger"></i> Drag a card on the board</button>
-        <button class="try" data-goto='{"path":"/projects/DAL/plan"}'><i class="ti ti-calendar-week"></i> Plan a Sprint</button>
+        <button class="try" data-goto='{"path":"/projects/ACM/board"}'><i class="ti ti-hand-finger"></i> Drag a card on the board</button>
+        <button class="try" data-goto='{"path":"/projects/ACM/plan"}'><i class="ti ti-calendar-week"></i> Plan a Sprint</button>
       </div>
     </section>
 
-    <section class="chapter" data-goto='{"path":"/issues/DAL-1"}'>
+    <section class="chapter" data-goto='{"path":"/issues/ACM-1"}'>
       <div class="flow-head"><div class="ic"><i class="ti ti-circle-dot"></i></div><h2>An issue, and getting to it</h2></div>
       <p style="margin-top:18px">An issue reads like a document: a Markdown description, then its history and comments in one timeline. Its properties sit to the side, each one a single click to change.</p>
       <ul class="decisions">
-        <li><i class="ti ti-circle-check"></i><span><b>Keys are published addresses.</b> <code>DAL-1</code> is allocated once per Project, never reused, and works the same in a link, a document and the CLI.</span></li>
+        <li><i class="ti ti-circle-check"></i><span><b>Keys are published addresses.</b> <code>ACM-1</code> is allocated once per Project, never reused, and works the same in a link, a document and the CLI.</span></li>
         <li><i class="ti ti-circle-check"></i><span><b>⌘K reaches everything:</b> any destination, any issue, any document, and the common commands, without leaving the keyboard.</span></li>
       </ul>
       <div class="tries">
-        <button class="try" data-goto='{"path":"/issues/DAL-1"}'><i class="ti ti-hand-finger"></i> Show DAL-1</button>
-        <button class="try" data-goto='{"path":"/issues/DAL-1","action":"paletteSearch","arg":"proj"}'><i class="ti ti-command"></i> Open the command palette</button>
+        <button class="try" data-goto='{"path":"/issues/ACM-1"}'><i class="ti ti-hand-finger"></i> Show ACM-1</button>
+        <button class="try" data-goto='{"path":"/issues/ACM-1","action":"paletteSearch","arg":"proj"}'><i class="ti ti-command"></i> Open the command palette</button>
       </div>
     </section>
 
-    <section class="chapter" data-goto='{"path":"/docs/DAL/sprint-4-review"}'>
+    <section class="chapter" data-goto='{"path":"/docs/ACM/sprint-4-review"}'>
       <div class="flow-head"><div class="ic"><i class="ti ti-file-text"></i></div><h2>Kova Docs</h2></div>
       <p style="margin-top:18px">Documents are written in a Space inside a Project, and read in one Area across every Project you belong to. Each one starts as a Draft that only its author and their invited collaborators can see.</p>
       <ul class="decisions">
@@ -439,19 +412,19 @@
         <li><i class="ti ti-circle-check"></i><span><b>Type <code>/</code> on an empty line</b> for headings, toggles, callouts, a table of contents that rebuilds itself from the headings, and Embeds.</span></li>
       </ul>
       <div class="tries">
-        <button class="try" data-goto='{"path":"/docs/DAL/sprint-4-review","side":"comments"}'><i class="ti ti-message"></i> Read the comment thread</button>
-        <button class="try" data-goto='{"path":"/docs/DAL/sprint-4-review","action":"publish"}'><i class="ti ti-world"></i> Publish the Draft</button>
+        <button class="try" data-goto='{"path":"/docs/ACM/sprint-4-review","side":"comments"}'><i class="ti ti-message"></i> Read the comment thread</button>
+        <button class="try" data-goto='{"path":"/docs/ACM/sprint-4-review","action":"publish"}'><i class="ti ti-world"></i> Publish the Draft</button>
       </div>
     </section>
 
-    <section class="chapter" data-goto='{"path":"/docs/DAL/architecture-overview","side":"history"}'>
+    <section class="chapter" data-goto='{"path":"/docs/ACM/architecture-overview","side":"history"}'>
       <div class="flow-head"><div class="ic"><i class="ti ti-history"></i></div><h2>Versions mark moments, not saves</h2></div>
       <p style="margin-top:18px">Several people can edit a Document at once, so Kova doesn’t ask anyone to save. A version is taken automatically once the editors go quiet, and anyone can name one by hand, for example “Sent to client”.</p>
       <ul class="decisions">
         <li><i class="ti ti-circle-check"></i><span><b>Every version is kept</b> for as long as the Document exists, and reading one is clearly marked as read-only.</span></li>
         <li><i class="ti ti-circle-check"></i><span><b>An Icon and a Cover belong to the Document, not its content,</b> so changing them never creates a new version.</span></li>
       </ul>
-      <div class="tries"><button class="try" data-goto='{"path":"/docs/DAL/architecture-overview","side":"history"}'><i class="ti ti-hand-finger"></i> Browse the versions</button></div>
+      <div class="tries"><button class="try" data-goto='{"path":"/docs/ACM/architecture-overview","side":"history"}'><i class="ti ti-hand-finger"></i> Browse the versions</button></div>
     </section>
 
     <section class="chapter" data-goto='{"path":"/admin"}'>
@@ -471,6 +444,23 @@
       </div>
     </section>
 
+    <section class="chapter" id="vocabulary" data-goto='{"path":"/docs?view=trash"}'>
+      <div class="num">Chapter 6</div>
+      <h2>Archive, delete and purge are three different things.</h2>
+      <p>Most tools have one “delete” and leave you to guess what it does. Kova’s glossary splits that one word into three acts, each with its own promise.</p>
+      <ol class="lifecycle">
+        <li><b><i class="ti ti-archive"></i> Archive</b><p>Retires a published Document. It leaves the tree and search and becomes read-only, but it still opens and links to it still work.</p><span>Undo: Restore, at any time</span></li>
+        <li><b><i class="ti ti-trash"></i> Move to Trash</b><p>Only a Draft or an archived Document can be deleted, so nothing everyone could read disappears in one step. It waits in the Trash for 30 days.</p><span>Undo: Restore, within 30 days</span></li>
+        <li><b><i class="ti ti-flame"></i> Purge</b><p>Happens on its own after 30 days, taking the Document’s versions, comment threads and stars with it. Links and Embeds that pointed at it show “Deleted document”.</p><span class="no">Undo: none, which is why there is no button for it</span></li>
+      </ol>
+      <p style="font-size:15px">The glossary also lists the words not to use for each one, such as <i>hide</i>, <i>recycle bin</i> and <i>hard delete</i>, so the same three words appear in the interface, the API and the CLI.</p>
+      <div class="tries">
+        <button class="try" data-goto='{"path":"/docs/xkye-handbook/how-we-run-a-client-engagement","action":"docMenu"}'><i class="ti ti-archive"></i> Archive a Document</button>
+        <button class="try" data-goto='{"path":"/docs?view=archive"}'><i class="ti ti-archive"></i> Open the Archive</button>
+        <button class="try" data-goto='{"path":"/docs?view=trash"}'><i class="ti ti-trash"></i> Open the Trash</button>
+      </div>
+    </section>
+
   </div>
 
   <aside class="stage" aria-label="Live prototype">
@@ -480,32 +470,11 @@
         <button id="themeBtn" aria-label="Switch the prototype to the dark theme" title="Theme"><i class="ti ti-moon"></i></button>
         <a href="prototype.html" target="_blank" rel="noopener" id="fullLink" aria-label="Open the prototype full screen" title="Open full screen"><i class="ti ti-arrows-maximize"></i></a>
       </div>
-      <div class="frame-holder" id="holder"><iframe id="proto" src="prototype.html" title="Kova interactive prototype"></iframe></div>
+      <div class="frame-holder" id="holder"><iframe id="proto" src="prototype.html?v=2" title="Kova interactive prototype"></iframe></div>
     </div>
     <div class="stage-caption"><span class="live"></span> Live prototype. Click around, drag cards, press ⌘K.</div>
   </aside>
 </main>
-
-<section class="band" id="vocabulary">
-  <div class="wrap">
-    <div class="band-head">
-      <div class="num">Chapter 6</div>
-      <h2>The glossary came first.</h2>
-      <p>Kova’s repository opens with a glossary. Every concept is defined once, in plain words, together with the words not to use for it. Those terms then become the labels, the API fields and the CLI commands, so a person never has to translate between them.</p>
-    </div>
-    <div class="vocab">
-      <div class="ask">
-        <label for="ask">Type the word you’d reach for</label>
-        <input id="ask" placeholder="e.g. deactivate" autocomplete="off" spellcheck="false" />
-        <div class="hints" aria-label="Examples">
-          <button data-ask="delete">delete</button><button data-ask="admin panel">admin panel</button><button data-ask="OTP">OTP</button><button data-ask="wiki">wiki</button><button data-ask="saved view">saved view</button><button data-ask="cron">cron</button>
-        </div>
-        <div class="answer" id="answer" aria-live="polite"></div>
-      </div>
-      <div class="terms" id="terms"></div>
-    </div>
-  </div>
-</section>
 
 <section class="band dark" id="terminal">
   <div class="wrap">
@@ -517,7 +486,7 @@
     <div class="term-wrap">
       <div class="cmds" id="cmds" role="tablist" aria-label="Commands"></div>
       <div>
-        <div class="terminal"><div class="tb">~/xkye/dalqen</div><pre id="tty" aria-live="polite"></pre></div>
+        <div class="terminal"><div class="tb">~/work/acme</div><pre id="tty" aria-live="polite"></pre></div>
         <p class="term-note">The commands and arguments are the real ones. The output here is shortened for the page.</p>
       </div>
     </div>
@@ -594,7 +563,7 @@
           <div><b style="font-family:Inter;font-size:22px;font-weight:600;letter-spacing:-.015em">Sprint 4 review</b><span>Inter · 22 · 600</span></div>
           <div><span style="font-family:Inter;font-size:14px">Ship the issue read slice</span><span>Inter · 14 · 400</span></div>
           <div><span style="font-family:Inter;font-size:12px;color:var(--slate)">Edited 4 min ago</span><span>Inter · 12</span></div>
-          <div><span class="mono" style="font-size:12px;color:var(--slate)">DAL-1 · 19 Oct</span><span>JetBrains Mono · 11.5</span></div>
+          <div><span class="mono" style="font-size:12px;color:var(--slate)">ACM-1 · 19 Oct</span><span>JetBrains Mono · 11.5</span></div>
         </div>
         <p class="note" style="margin-top:10px"><i class="ti ti-info-circle"></i>Inter in the product, Outfit for brand moments like this page. Issue keys and dates use tabular figures so columns never shift.</p>
       </div>
@@ -661,90 +630,22 @@
   const $ = (s) => document.querySelector(s);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-  // ---------------------------------------------------------------- glossary --
-  // Shortened, faithfully, from CONTEXT.md in the Kova monorepo.
-  const GLOSSARY = [
-    ['People', 'Owner', 'An Xkye Member who governs the installation and is a full member of every Project. There may be several, and at least one must stay active.', ['administrator', 'admin', 'superuser']],
-    ['People', 'Xkye Member', 'A person’s invited, active, suspended or removed relationship with Kova. Only an active member may use it; Project memberships decide what they reach.', ['user', 'seat', 'account']],
-    ['People', 'Invitation', 'An Owner’s offer to an email address to become a member, carrying the Project access set up in advance. It can be accepted for 24 hours.', ['invite (as a noun)', 'pending member', 'sign-up']],
-    ['People', 'Suspend', 'To stop a member from using Kova without forgetting them: memberships, history and name stay, access tokens are revoked, and they can be restored.', ['deactivate', 'disable', 'ban']],
-    ['People', 'Remove from Kova', 'To end a suspended member’s relationship for good. Their name and history stay, but everything they held is gone. They can only be invited again.', ['delete', 'offboard', 'deactivate']],
-    ['People', 'Confirmation code', 'A six-digit code, emailed to an Owner and naming the act that asked for it, that lets guarded acts through for five minutes in that browser.', ['OTP', 'verification code', 'two-factor', 'sudo mode']],
-    ['Finding your way', 'Area', 'One of the top-level parts of the app you switch between from the strip: Kova, Kova Docs and, for Owners, Admin.', ['app', 'module', 'workspace', 'section']],
-    ['Finding your way', 'Admin', 'The Area where an Owner governs the whole installation: its people, its Projects as a set, and the settings every Project starts from.', ['admin panel', 'console', 'back office', 'settings']],
-    ['Finding your way', 'Needs attention', 'Admin’s queue of things waiting on an Owner. Each item leaves when it is dealt with, or when an Owner keeps things as they are.', ['inbox', 'alerts', 'dashboard', 'to-do']],
-    ['Finding your way', 'Notification', 'A note in one person’s bell that something which concerns them happened. It is never about their own act.', ['alert', 'message', 'inbox item']],
-    ['Narrowing a list', 'Filter', 'A narrowing of an issue list, carried entirely in the address, so that a narrowed list is a link.', ['view', 'query', 'criteria set']],
-    ['Narrowing a list', 'Saved filter', 'A named Filter belonging to one person and visible only to them, kept so it can be applied again.', ['saved view', 'favourite', 'bookmark']],
-    ['Narrowing a list', 'Placement', 'Where an issue sits in its Project’s plan: the Backlog, the running Sprint, or one Sprint by its sequence.', ['destination', 'location', 'sprint filter']],
-    ['Docs', 'Kova Docs', 'The Area where a person browses and writes every Document they can read, across all their Projects. It owns nothing itself.', ['wiki', 'library', 'drive', 'knowledge base']],
-    ['Docs', 'Space', 'A named tree of Documents inside one Project. Who may read a Space is who may read its Project.', ['teamspace', 'folder', 'workspace']],
-    ['Docs', 'Draft', 'A Document not yet published, visible only to its author and the collaborators they invite. Every Document starts as one.', ['private page', 'unpublished', 'hidden']],
-    ['Docs', 'Document Version', 'A read-only checkpoint, taken automatically when editors go quiet or by hand under a name. It marks a moment, not a save.', ['revision', 'save', 'snapshot']],
-    ['Docs', 'Embed', 'A block that renders a Kova object live, such as an issue or an issue list drawn from a Filter, from the Document’s own Project.', ['widget', 'database', 'live link']],
-    ['Docs', 'Archive', 'To retire a published Document without losing it: it leaves the tree and becomes read-only, but links still work and it can be restored.', ['hide', 'deactivate', 'delete']],
-    ['Docs', 'Trash', 'Where a deleted Document waits for 30 days, restorable, before it is purged.', ['bin', 'recycle bin', 'deleted items']],
-    ['Docs', 'Purge', 'The permanent removal of a Document after 30 days in the Trash, with everything that existed only because of it.', ['hard delete', 'destroy', 'empty trash']],
-    ['Docs', 'Tombstone', 'What a reference shows once the Document it names has been purged: “Deleted document”, without the old title.', ['broken link', 'dead link', 'placeholder']],
-    ['Keeping Kova running', 'Nightly job', 'The work Kova does by itself once a day, for no person: purging, scheduled removals, the Search check and clearing Stray files.', ['cron', 'background job', 'scheduler']],
-    ['Keeping Kova running', 'Rebuild search', 'To remake search from scratch out of what exists. It loses nothing.', ['reindex', 'refresh search']],
-  ];
-
-  const termsEl = $('#terms'), answer = $('#answer');
-  let group = null;
-  termsEl.innerHTML = GLOSSARY.map(([g, t, d, avoid], n) => `${g !== group ? `<h3 class="group-h">${(group = g)}</h3>` : ''}<button class="term-card" data-n="${n}"><b>${esc(t)}</b><span>${avoid.map((a) => `<s>${esc(a)}</s>`).join(' ')}</span></button>`).join('');
-
-  function show(n, asked) {
-    document.querySelectorAll('.term-card').forEach((c) => c.classList.toggle('on', +c.dataset.n === n));
-    if (n == null) { answer.innerHTML = asked ? `<div class="say">No match for “${esc(asked)}”</div><p>Try a word from a tool you already use, like “delete”, “wiki” or “dashboard”.</p>` : '<p style="color:var(--muted)">Kova will tell you the word it uses instead, and what it means.</p>'; return; }
-    const [, t, d, avoid] = GLOSSARY[n];
-    const hit = asked && avoid.find((a) => a.toLowerCase().includes(asked.toLowerCase()));
-    answer.innerHTML = `<div class="say">${hit ? `Instead of <s style="color:var(--strike);text-decoration-color:var(--action)">${esc(hit)}</s>, Kova says` : 'Kova says'}</div><div class="term">${esc(t)}</div><p>${esc(d)}</p>`;
-  }
-  function ask(q) {
-    const s = q.trim().toLowerCase();
-    if (!s) return show(null);
-    let n = GLOSSARY.findIndex(([, , , avoid]) => avoid.some((a) => a.toLowerCase() === s));
-    if (n < 0) n = GLOSSARY.findIndex(([, , , avoid]) => avoid.some((a) => a.toLowerCase().includes(s)));
-    if (n < 0) n = GLOSSARY.findIndex(([, t]) => t.toLowerCase().includes(s));
-    show(n < 0 ? null : n, q.trim());
-  }
-  $('#ask').addEventListener('input', (e) => ask(e.target.value));
-  document.querySelectorAll('[data-ask]').forEach((b) => b.addEventListener('click', () => { $('#ask').value = b.dataset.ask; ask(b.dataset.ask); }));
-  termsEl.addEventListener('click', (e) => { const c = e.target.closest('.term-card'); if (c) { $('#ask').value = ''; show(+c.dataset.n); } });
-  show(null);
-
-  // Hero entry: a few terms on a slow cycle, stopped as soon as someone picks one.
-  const HERO = ['Suspend', 'Filter', 'Draft', 'Confirmation code', 'Archive'].map((t) => GLOSSARY.find((g) => g[1] === t));
-  const cycle = $('#entry-cycle');
-  cycle.innerHTML = HERO.map((h, n) => `<button role="tab" aria-label="${esc(h[1])}" aria-selected="${n === 0}" class="${n === 0 ? 'on' : ''}" data-n="${n}"></button>`).join('');
-  let heroN = 0, heroTimer;
-  function hero(n) {
-    heroN = n;
-    const [, t, d, avoid] = HERO[n];
-    $('#entry-term').textContent = t; $('#entry-def').textContent = d;
-    $('#entry-avoid').innerHTML = 'Avoid ' + avoid.map((a) => `<s>${esc(a)}</s>`).join(' ');
-    cycle.querySelectorAll('button').forEach((b, i) => { b.classList.toggle('on', i === n); b.setAttribute('aria-selected', i === n); });
-  }
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) heroTimer = setInterval(() => hero((heroN + 1) % HERO.length), 4200);
-  cycle.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { clearInterval(heroTimer); hero(+b.dataset.n); } });
-
   // ---------------------------------------------------------------- terminal --
   const D = (s) => `<span class="dim">${s}</span>`;
   const CMDS = [
     ['kova my-work', 'Your queues, the same ones Home shows', `Sprint 4 (2)
-  DAL-3   ${'In progress'.padEnd(12)} High     Make the issue list keyboard navigable
-  DAL-5   ${'Blocked'.padEnd(12)} Urgent   Unblock the local Supabase stack
+  ACM-3   ${'In progress'.padEnd(12)} High     Make the issue list keyboard navigable
+  ACM-5   ${'Blocked'.padEnd(12)} Urgent   Unblock the local Supabase stack
 
 Slice 2 (1)
-  REN-1   ${'In progress'.padEnd(12)} Urgent   Load the Renigo order history into the warehouse
+  BLU-1   ${'In progress'.padEnd(12)} Urgent   Load the Bluebird order history into the warehouse
 
 Everything else (1)
-  DAL-8   ${'Todo'.padEnd(12)} Medium   Draft the CLI error contract`],
-    ['kova issues --status blocked --mine', 'A Filter, as flags', `DAL-5   Blocked   Urgent   Unblock the local Supabase stack   ${D('due 14 Oct')}
+  ACM-8   ${'Todo'.padEnd(12)} Medium   Draft the CLI error contract`],
+    ['kova issues --status blocked --mine', 'A Filter, as flags', `ACM-5   Blocked   Urgent   Unblock the local Supabase stack   ${D('due 14 Oct')}
 
 ${D('1 issue')}`],
-    ['kova issue dal-1', 'One issue, rendered from the same Markdown', `<b>DAL-1  Ship the issue read slice</b>
+    ['kova issue acm-1', 'One issue, rendered from the same Markdown', `<b>ACM-1  Ship the issue read slice</b>
 In progress · High · Mira Member · Sprint 4 · due 17 Oct
 ${D('Labels: web, api')}
 
@@ -752,16 +653,16 @@ ${D('Labels: web, api')}
 The daily work path needs an issue to read, so this fixture
 is what the local stack has to show until creation lands.
 
-${D('2 comments · kova issue comment DAL-1 "…" to reply')}`],
-    ['kova issue status DAL-3 in_review', 'Move work without leaving the terminal', `<span class="ok">✓</span> DAL-3 is now In review.`],
-    ['kova docs search projection', 'Search the Documents you can read', `🔎  Search projection notes    ${D('Dalqen / Architecture overview')}
-🏛️  Architecture overview      ${D('Dalqen')}
+${D('2 comments · kova issue comment ACM-1 "…" to reply')}`],
+    ['kova issue status ACM-3 in_review', 'Move work without leaving the terminal', `<span class="ok">✓</span> ACM-3 is now In review.`],
+    ['kova docs search projection', 'Search the Documents you can read', `🔎  Search projection notes    ${D('Acme / Architecture overview')}
+🏛️  Architecture overview      ${D('Acme')}
 
 ${D('2 documents')}`],
-    ['kova issue dal-42', 'Failures say what happened and how to fix it', `<span class="err">error:</span> Issue DAL-42 was not found.
+    ['kova issue acm-42', 'Failures say what happened and how to fix it', `<span class="err">error:</span> Issue ACM-42 was not found.
 Request ID: 33333333-3333-4333-8333-333333333333
 Check the identifier and the selected profile.`],
-    ['kova auth status', 'Who you are, where, and how', `Signed in as Kova Developer (developer@xkye.dev)
+    ['kova auth status', 'Who you are, where, and how', `Signed in as Kova Owner (owner@company.com)
 Profile   default  ${D('(the packaged API address)')}
 Token     Laptop CLI, expires 31 Dec 2026
 Stored in the system keychain`],
@@ -792,7 +693,7 @@ Stored in the system keychain`],
   function fit() {
     const w = stage.clientWidth;
     if (!w) return;
-    const s = Math.min(1, w / 1280, (innerHeight - 64 - 40 - 40 - 50) / 800);
+    const s = Math.min(1, w / 1280, (innerHeight - 64 - 88 - 24 - 40 - 50) / 800);
     frame.style.transform = `scale(${s})`;
     holder.style.width = `${1280 * s}px`; holder.style.height = `${800 * s}px`;
     win.style.width = `${1280 * s}px`;
@@ -817,10 +718,11 @@ Stored in the system keychain`],
     send(stageVisible() ? frame : inlineFrame, json);
   }
 
-  // Drive the window from whichever chapter is in the middle of the viewport.
+  // Drive the window from the chapter whose top has reached the upper third of the viewport, so it
+  // changes once a reader is into the new chapter rather than as it first comes into view.
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) goto(e.target.dataset.goto); });
-  }, { rootMargin: '-45% 0px -45% 0px' });
+  }, { rootMargin: '-30% 0px -69% 0px' });
   document.querySelectorAll('section.chapter[data-goto]').forEach((s) => io.observe(s));
 
   addEventListener('message', (e) => {
