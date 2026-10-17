@@ -1,0 +1,21 @@
+---
+order: 5
+title: "Kova Docs"
+icon: "file-text"
+goto: {"path": "/docs/ACM/sprint-4-review"}
+---
+
+Documents are written in a Space inside a Project, and read in one Area across every Project you belong to. Each one starts as a Draft that only its author and their invited collaborators can see.
+
+<Decisions>
+
+- **Embeds are live.** The issue list in this Draft is drawn from a Filter, so moving a card on the board changes the document without anyone editing it.
+- **Publish is one-way** and says so before you press it. Archiving retires a published Document without breaking a single link to it.
+- **Type `/` on an empty line** for headings, toggles, callouts, a table of contents that rebuilds itself from the headings, and Embeds.
+
+</Decisions>
+
+<Tries>
+<TryButton icon="message" goto={{ path: '/docs/ACM/sprint-4-review', view: 'comments' }}>Read the comment thread</TryButton>
+<TryButton icon="world" goto={{ path: '/docs/ACM/sprint-4-review', action: 'publish' }}>Publish the Draft</TryButton>
+</Tries>

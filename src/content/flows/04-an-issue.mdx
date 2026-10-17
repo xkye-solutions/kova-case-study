@@ -1,0 +1,20 @@
+---
+order: 4
+title: "An issue, and getting to it"
+icon: "circle-dot"
+goto: {"path": "/issues/ACM-1"}
+---
+
+An issue reads like a document: a Markdown description, then its history and comments in one timeline. Its properties sit to the side, each one a single click to change.
+
+<Decisions>
+
+- **Keys are published addresses.** `ACM-1` is allocated once per Project, never reused, and works the same in a link, a document and the CLI.
+- **⌘K reaches everything:** any destination, any issue, any document, and the common commands, without leaving the keyboard.
+
+</Decisions>
+
+<Tries>
+<TryButton>Show ACM-1</TryButton>
+<TryButton icon="command" goto={{ path: '/issues/ACM-1', action: 'paletteSearch', data: 'proj' }}>Open the command palette</TryButton>
+</Tries>

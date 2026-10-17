@@ -1,0 +1,22 @@
+---
+order: 7
+title: "Admin and the Confirmation code"
+icon: "shield-half"
+goto: {"path": "/admin"}
+---
+
+Admin opens on **Needs attention**, a queue of things waiting on an Owner, such as an expired invitation or someone suspended for longer than the review period. Each item leaves the queue when it’s dealt with.
+
+<BeforeAfter beforeLabel="Usual approach" before="Re-enter your password for anything sensitive, then do whatever you like." afterLabel="Kova" after="A six-digit code names the exact act it confirms, and lets guarded acts through for five minutes." />
+
+<Decisions>
+
+- **Only acts that move ownership or end a membership for good are guarded:** Make Owner, demoting or suspending an Owner, and Remove from Kova.
+- **Suspending unassigns someone’s unfinished issues,** and restoring them doesn’t hand the work back, so nobody stays assigned to work they can’t reach.
+
+</Decisions>
+
+<Tries>
+<TryButton icon="inbox">Show Needs attention</TryButton>
+<TryButton icon="shield-lock" goto={{ path: '/admin/members', action: 'member', data: 'mira' }}>Make Mira an Owner</TryButton>
+</Tries>

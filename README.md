@@ -1,39 +1,38 @@
 # Kova — Case Study & Interactive Prototype
 
-> **Read-only Mirror.** This is maintained in Xkye Solutions' private monorepo and split here with its history. Changes made here are overwritten, so please don't open issues or pull requests.
+> **Read-only Mirror.** This is maintained in Xkye Solutions' private monorepo and split here with its history. Changes made here are overwritten, so please don't open issues or pull requests. Live (unlisted) at <https://kova.xkye.app>. Built on [`case-study-kit`](https://github.com/xkye-solutions/case-study-kit) and [`brand`](https://github.com/xkye-solutions/brand), which are Mirrors too.
 
 A portfolio case study by **Xkye Solutions** for Kova, the studio's own project, issue and knowledge tool. The page tells the product story and embeds a live, clickable prototype of the Kova web app that follows along as you scroll.
 
-- `index.html` — the case study
-- `prototype.html` + `assets/js/prototype.js` — the interactive desktop app, also usable on its own
-
-No framework or dependencies yet (an Astro port is planned): plain HTML, CSS and JavaScript.
+Built with Astro on the shared case-study kit (`@xkye/case-study-kit`) as a `desktop` Story; see the kit's README for how the pieces fit. The page asks not to be indexed while Kova is unlisted.
 
 ## Running locally
 
-Serve `public/` over HTTP (the case study talks to the prototype through an `<iframe>`, which browsers block on `file://`):
+From the monorepo root:
 
 ```sh
-python3 -m http.server 4188 --bind 127.0.0.1 --directory public
+pnpm install
+pnpm --filter @xkye/kova-case-study dev
 ```
 
-Then open:
-
-- http://127.0.0.1:4188/ — case study
-- http://127.0.0.1:4188/prototype.html — prototype on its own (starts at sign-in)
-- http://127.0.0.1:4188/prototype.html#/projects/ACM/board — any prototype address, deep-linked
+Then open the URL Astro prints: `/` is the case study, `/prototype.html` is the prototype on its own (it starts at sign-in), and `/prototype.html#/projects/ACM/board` deep-links any prototype address. `pnpm build` writes the site to `dist/`.
 
 ## Project structure
 
 ```
 .
-├── package.json             Build: copies public/ to dist/
+├── astro.config.mjs
+├── src/
+│   ├── pages/index.astro       The case study: nav, hero, narrative chapters, the terminal and end sections
+│   ├── content/flows/          One MDX file per key-flow chapter
+│   ├── content.config.ts       The flows collection, on the kit's flowSchema
+│   └── styles/kova.css         All page styles
 └── public/
-    ├── index.html           Case study page
-    ├── prototype.html       Prototype shell and styles (the app's real design tokens)
+    ├── prototype.html          Prototype shell and styles (the app's real design tokens), served as-is
     └── assets/
-        ├── brand/           Kova and Kova Docs marks and favicons, from the monorepo's brand kit
-        └── js/prototype.js  Prototype state, router, views and actions
+        ├── brand/              Kova and Kova Docs marks and favicons, from the monorepo's brand kit
+        ├── kova-board.png      The hero shot
+        └── js/prototype.js     Prototype state, router, views and actions
 ```
 
 ## Prototype
@@ -48,21 +47,21 @@ The address is the source of truth, as it is in Kova: a Filter lives entirely in
 
 ### Driving it from the case study
 
-`index.html` sends a message to the embedded prototype as each chapter scrolls into view:
+The case study sends `kova:goto` messages to the embedded prototype as each chapter becomes active, following the kit's Prototype contract:
 
 ```js
 frame.contentWindow.postMessage({
   type: 'kova:goto',
   path: '/issues?status=blocked&assignee=me', // any prototype address
-  side: 'comments',      // optional: 'comments' | 'history' panel on a Document
+  view: 'comments',      // optional: 'comments' | 'history' panel on a Document
   action: 'filter',      // optional: palette | paletteSearch | notifications | newIssue | collapse |
                          //   publish | history | comments | docMenu | filter | member | theme | tokens
-  arg: 'priority',       // optional argument for the action
+  data: 'priority',      // optional argument for the action
   theme: 'dark',         // optional
 }, '*');
 ```
 
-Chapters declare their target with a `data-goto` attribute, so adding a chapter only needs markup. The prototype reports back with `{ type: 'kova:url', path, theme }` after every navigation, which drives the address bar above the window, and `{ type: 'kova:ready' }` once it has loaded.
+Each chapter declares its target with a `goto` prop (or `goto` frontmatter for a key flow), so adding a chapter only needs markup or a new file in `src/content/flows/`. The prototype reports back with `{ type: 'kova:status', url, theme, href }` after every navigation, which drives the title bar above the window (address, theme toggle and full-screen link), and `{ type: 'kova:ready' }` once it has loaded.
 
 ## Brand
 
@@ -84,4 +83,4 @@ Colours, type and logos follow the Kova brand kit (`brand/kova` in the monorepo)
 
 ## Deploying
 
-This Case Study lives in the `xkye-solutions` monorepo. `pnpm build` copies `public/` to `dist/`. That built output is deployed to Cloudflare at `kova.xkye.app` (unlisted), and its source is split, with history, to the read-only `xkye-solutions/kova-case-study` Mirror.
+This Case Study lives in the `xkye-solutions` monorepo. `pnpm build` builds it into `dist/`, which Alchemy deploys to Cloudflare at `kova.xkye.app` (unlisted). Its source is split, with history, to the read-only `xkye-solutions/kova-case-study` Mirror.

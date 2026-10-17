@@ -1,0 +1,341 @@
+---
+// Kova on the case-study kit, as a desktop Case Study. Narrative chapters are markup; key flows come from
+// src/content/flows. Unlisted: nothing links here yet, so it asks not to be indexed.
+import CaseStudy from '@xkye/case-study-kit/CaseStudy.astro';
+import Story from '@xkye/case-study-kit/Story.astro';
+import Chapter from '@xkye/case-study-kit/Chapter.astro';
+import FlowChapter from '@xkye/case-study-kit/FlowChapter.astro';
+import PrototypeFrame from '@xkye/case-study-kit/PrototypeFrame.astro';
+import Tries from '@xkye/case-study-kit/Tries.astro';
+import TryButton from '@xkye/case-study-kit/TryButton.astro';
+import { getCollection } from 'astro:content';
+import '../styles/kova.css';
+const flows = (await getCollection('flows')).sort((a, b) => a.data.order - b.data.order);
+---
+<CaseStudy
+  title="Kova Case Study"
+  description="Kova: Xkye's own project, issue and knowledge tool. A case study by Xkye Solutions with a live interactive prototype."
+  site="https://kova.xkye.app/"
+  ogTitle="Kova Case Study · Xkye Solutions"
+  ogDescription="Issues, plans and documents in one tool that uses the same words everywhere. With a live interactive prototype."
+>
+<Fragment slot="head">
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</Fragment>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="Kova, back to top"><img src="assets/brand/kova-horizontal-color.svg" alt="Kova" /></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#problem">Problem</a>
+      <a href="#flows">Key flows</a>
+      <a href="#vocabulary">Archive &amp; Trash</a>
+      <a href="#terminal">Terminal</a>
+      <a href="#engineering">Engineering</a>
+      <a href="#system">Design system</a>
+    </nav>
+    <a class="nav-cta" href="prototype.html" target="_blank" rel="noopener"><i class="ti ti-app-window"></i><span>Open prototype</span></a>
+  </div>
+</header>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="kicker"><img src="assets/brand/kova-symbol-color.svg" alt="" /> Xkye Solutions case study: an internal tool we build and use every day</div>
+      <h1>Issues, plans and docs that speak one language.</h1>
+      <p class="lede">Kova is where Xkye plans its work, tracks every issue, and writes everything down. It runs in the browser and in the terminal, and every screen uses words we agreed on before we built it.</p>
+      <dl class="meta">
+        <div><dt>Studio</dt><dd>Xkye Solutions</dd></div>
+        <div><dt>Platform</dt><dd>Web, PWA &amp; CLI</dd></div>
+        <div><dt>Scope</dt><dd>Product, design &amp; engineering</dd></div>
+      </dl>
+    </div>
+    <a class="shot" href="prototype.html#/projects/ACM/board" target="_blank" rel="noopener"><img src="assets/kova-board.png" width="880" height="560" alt="The Acme board in Kova: issues in Todo, In progress, In review, Blocked and Done" /></a>
+  </div>
+</header>
+
+<Story prototype="prototype.html" project="kova" title="Kova interactive prototype" device="desktop" host="kova" caption="Live prototype. Click around, drag cards, press ⌘K.">
+    <Chapter id="context" num="Chapter 1" goto={{"path":"/"}}>
+      <h2>A studio that keeps its own house in order.</h2>
+      <p class="big">Xkye runs its own products alongside client engagements and the work of running the studio. Every one of them needs a backlog, a plan, and somewhere to write down what was decided and why.</p>
+      <p>Kova is that place. It is a single installation for one company, built by the people who use it, and its own backlog has lived in Kova since the first working slice.</p>
+      <Tries>
+        <TryButton icon="plus" goto={{ path: '/', action: 'newIssue' }}>Create an issue</TryButton>
+        <TryButton icon="layout-sidebar-left-collapse" goto={{ path: '/', action: 'collapse' }}>Fold the sidebar</TryButton>
+        <TryButton icon="command" goto={{ path: '/', action: 'palette' }}>Search with ⌘K</TryButton>
+        <TryButton icon="file-text" goto={{ path: '/docs' }}>Switch to Kova Docs</TryButton>
+      </Tries>
+      <PrototypeFrame src="prototype.html" title="Kova interactive prototype" device="desktop" host="kova">
+        <p style="font-size:14px;margin-top:12px">Kova is a desktop tool, so the prototype is easier to use <a href="prototype.html" target="_blank" rel="noopener">on its own, full screen</a>.</p>
+      </PrototypeFrame>
+    </Chapter>
+
+    <Chapter id="problem" num="Chapter 2" goto={{"path":"/"}}>
+      <h2>Work in one place, writing in another, and words that drift.</h2>
+      <p>The trouble with project tools is rarely a missing feature. It is the gap between them, and the way the same word means three things depending on who you ask.</p>
+      <div class="cards">
+        <div class="card"><div class="ic"><i class="ti ti-arrows-split-2"></i></div><h3>Issues and documents live apart</h3><p>The spec is in one tool and the work in another. A decision written down last month can’t show whether its issues ever shipped.</p></div>
+        <div class="card"><div class="ic"><i class="ti ti-language"></i></div><h3>“Archive” means whatever you need it to</h3><p>Does deleting hide something, or lose it? Is a deactivated person gone? When the vocabulary drifts, people stop trusting the buttons.</p></div>
+        <div class="card"><div class="ic"><i class="ti ti-terminal-2"></i></div><h3>Developers live in a terminal</h3><p>A tool that is only a website is one more tab. The people closest to the code want to read and move issues where they already are.</p></div>
+      </div>
+      <div class="hmw"><small>How might we</small>give a small studio one place for its work and its writing, where every word means exactly one thing, in the browser and on the command line?</div>
+    </Chapter>
+
+    <Chapter id="people" num="Chapter 3" goto={{"path":"/admin/members"}}>
+      <h2>One roster, every state it can be in.</h2>
+      <p>A person’s relationship with Kova is a real thing with a lifecycle, not a row in a users table. Owners govern the installation, and Project memberships decide what everyone else can reach.</p>
+      <div class="roster" aria-label="The people in the prototype">
+        <div><i class="av" style="background:#0449D4">KO</i><span>Kova Owner<small>Governs the installation, a full member of every Project</small></span><em style="background:#dcefe3;color:#14532d">Active</em></div>
+        <div><i class="av" style="background:#7a52a0">AA</i><span>Ada Admin<small>A second Owner. At least one must always stay active.</small></span><em style="background:#dcefe3;color:#14532d">Active</em></div>
+        <div><i class="av" style="background:#3b7253">MM</i><span>Mira Member<small>Reaches only the Projects she belongs to</small></span><em style="background:#dcefe3;color:#14532d">Active</em></div>
+        <div><i class="av" style="background:#6f6e69">PP</i><span>Pat Pending<small>Invited, and the invitation lapsed after 24 hours</small></span><em style="background:#fdeed2;color:#7a4a08">Invited</em></div>
+        <div><i class="av" style="background:#c0392f">SS</i><span>Sam Suspended<small>Can’t sign in, but their history and name stay</small></span><em style="background:#fbe3e3;color:#8c1c1c">Suspended</em></div>
+      </div>
+      <p style="margin-top:18px;font-size:15px">These five are modelled on the sample data the team develops against. Each one stands for a state the system has to handle, so every screen that shows “who” has a real answer to show.</p>
+    </Chapter>
+
+    <Chapter id="principles" num="Chapter 4" goto={{"path":"/issues?status=in_progress,blocked&assignee=me"}}>
+      <h2>Five rules that shaped every screen.</h2>
+      <ol class="principles">
+        <li><div><h3>Words before screens</h3><p>Every concept is defined in a glossary, with the words to avoid, before it gets a button. The interface, the API and the CLI all use the same terms.</p></div></li>
+        <li><div><h3>The address is the state</h3><p>A Filter lives entirely in the URL, so a narrowed list is a link you can paste to a colleague and they see exactly what you see.</p></div></li>
+        <li><div><h3>One seam for browser and terminal</h3><p>The web app and the CLI call the same versioned API, so neither one can quietly drift from the other.</p></div></li>
+        <li><div><h3>Dense, not cramped</h3><p>A console that actually uses a desktop’s width: small type with steps a reader can tell apart, and rows that fit a scanning eye.</p></div></li>
+        <li><div><h3>Nothing is lost by accident</h3><p>Archive keeps things. The Trash waits 30 days. Suspending keeps someone’s history. Document Versions are never thrown away.</p></div></li>
+      </ol>
+    </Chapter>
+
+    <div id="flows"></div>
+
+    {flows.map((entry) => <FlowChapter entry={entry} />)}
+
+    <Chapter id="vocabulary" num="Chapter 6" goto={{"path":"/docs?view=trash"}}>
+      <h2>Archive, delete and purge are three different things.</h2>
+      <p>Most tools have one “delete” and leave you to guess what it does. Kova’s glossary splits that one word into three acts, each with its own promise.</p>
+      <ol class="lifecycle">
+        <li><b><i class="ti ti-archive"></i> Archive</b><p>Retires a published Document. It leaves the tree and search and becomes read-only, but it still opens and links to it still work.</p><span>Undo: Restore, at any time</span></li>
+        <li><b><i class="ti ti-trash"></i> Move to Trash</b><p>Only a Draft or an archived Document can be deleted, so nothing everyone could read disappears in one step. It waits in the Trash for 30 days.</p><span>Undo: Restore, within 30 days</span></li>
+        <li><b><i class="ti ti-flame"></i> Purge</b><p>Happens on its own after 30 days, taking the Document’s versions, comment threads and stars with it. Links and Embeds that pointed at it show “Deleted document”.</p><span class="no">Undo: none, which is why there is no button for it</span></li>
+      </ol>
+      <p style="font-size:15px">The glossary also lists the words not to use for each one, such as <i>hide</i>, <i>recycle bin</i> and <i>hard delete</i>, so the same three words appear in the interface, the API and the CLI.</p>
+      <Tries>
+        <TryButton icon="archive" goto={{ path: '/docs/xkye-handbook/how-we-run-a-client-engagement', action: 'docMenu' }}>Archive a Document</TryButton>
+        <TryButton icon="archive" goto={{ path: '/docs?view=archive' }}>Open the Archive</TryButton>
+        <TryButton icon="trash">Open the Trash</TryButton>
+      </Tries>
+    </Chapter>
+</Story>
+
+<section class="band dark" id="terminal">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="num">Chapter 7</div>
+      <h2>The same Kova, in a terminal.</h2>
+      <p>The <code style="background:rgba(255,255,255,.08);color:#fff">kova</code> CLI calls the same API as the browser. It signs in with a personal access token kept in the system keychain, never passed as an argument, and every failure carries a request id the server can trace.</p>
+    </div>
+    <div class="term-wrap">
+      <div class="cmds" id="cmds" role="tablist" aria-label="Commands"></div>
+      <div>
+        <div class="terminal"><div class="tb">~/work/acme</div><pre id="tty" aria-live="polite"></pre></div>
+        <p class="term-note">The commands and arguments are the real ones. The output here is shortened for the page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="engineering">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="num">Chapter 8</div>
+      <h2>Built so the rules can’t be skipped.</h2>
+      <p>Product behaviour lives in use cases, not in routes or screens. The web server is the only place the system is put together, and the database refuses anything a migration hasn’t explicitly granted.</p>
+    </div>
+    <div class="arch">
+      <div class="diagram" role="img" aria-label="Architecture: the web app and the CLI call the same versioned API, which runs application use cases over PostgreSQL adapters on Supabase with row level security.">
+        <div class="layer">
+          <div class="layer-row">
+            <div class="box app"><b>apps/web</b><span>TanStack Start and React. The composition root, the screens, and <code>/api/v1</code></span></div>
+            <div class="box app"><b>apps/cli</b><span>The <code>kova</code> command, talking to the API through the shared client</span></div>
+          </div>
+          <div class="arrow"><i class="ti ti-arrow-down"></i> one versioned contract, one error envelope</div>
+          <div class="box"><b>packages/api</b><span>The transport contract and the fetch-based client both sides use</span></div>
+          <div class="arrow"><i class="ti ti-arrow-down"></i> a resolved actor on every request</div>
+          <div class="layer-row">
+            <div class="box"><b>packages/application</b><span>Use cases that hold the product’s rules</span></div>
+            <div class="box"><b>packages/domain</b><span>The vocabulary, as types</span></div>
+          </div>
+          <div class="arrow"><i class="ti ti-arrow-down"></i> repository interfaces the application owns</div>
+          <div class="box"><b>packages/db</b><span>PostgreSQL adapters behind those interfaces</span></div>
+          <div class="arrow"><i class="ti ti-arrow-down"></i></div>
+          <div class="box db"><b>Supabase · PostgreSQL</b><span>Row level security on every table. Grants and policies ship together in migrations, so a table nobody granted stays unreachable.</span></div>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>24</dt><dd>Database migrations, each checked to be applied and to lint cleanly before a release</dd></div>
+        <div><dt>35</dt><dd>pgTAP suites that test the database’s own rules, including who can see what</dd></div>
+        <div><dt>316</dt><dd>Test files across the apps and packages, plus browser suites for the critical web flows</dd></div>
+        <div><dt>52</dt><dd>Colour pairs measured for contrast across both themes, with an automated accessibility scan as the lasting gate</dd></div>
+        <div><dt>0</dt><dd>Credentials allowed in the repository or its history. A scan checks every tracked file and every past commit.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="system" style="background:#fff">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="num">Chapter 9</div>
+      <h2>One family of marks, one set of tokens.</h2>
+      <p>The interface is built on a token layer: a colour is written in exactly one place, and every component asks for a role like “surface” or “muted text” rather than a hex value. That is what makes the dark theme a peer of the light one instead of an inversion.</p>
+    </div>
+
+    <h3 class="ds-label" style="margin-top:0">Brand colour</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#06142D"></div><div class="lbl"><b>Kova Navy</b><span>#06142D</span></div></div>
+      <div class="sw"><div class="chip" style="background:#032EA4"></div><div class="lbl"><b>Deep Blue</b><span>#032EA4</span></div></div>
+      <div class="sw"><div class="chip" style="background:#0449D4"></div><div class="lbl"><b>Action Blue</b><span>#0449D4</span></div></div>
+      <div class="sw"><div class="chip" style="background:#0497F8"></div><div class="lbl"><b>Electric Blue</b><span>#0497F8</span></div></div>
+      <div class="sw"><div class="chip" style="background:#52DDFC"></div><div class="lbl"><b>Sky Cyan</b><span>#52DDFC</span></div></div>
+      <div class="sw"><div class="chip" style="background:#F5F8FF;box-shadow:inset 0 -1px 0 #DCE5F2"></div><div class="lbl"><b>Paper</b><span>#F5F8FF</span></div></div>
+    </div>
+
+    <h3 class="ds-label">Logo</h3>
+    <div class="logo-row">
+      <div class="logo-tile"><img src="assets/brand/kova-primary-color.svg" alt="Kova primary logo" style="height:110px" /><small>Kova, primary</small></div>
+      <div class="logo-tile dark"><img src="assets/brand/kova-primary-reverse.svg" alt="Kova reverse logo" style="height:110px" /><small>Reverse, on navy</small></div>
+      <div class="logo-tile"><img src="assets/brand/docs-horizontal-color.svg" alt="Kova Docs logo" style="height:48px" /><small>Kova Docs</small></div>
+    </div>
+
+    <div class="ds-grid" style="margin-top:12px">
+      <div class="card">
+        <h3 class="ds-label" style="margin-top:0">Type</h3>
+        <div class="type-spec">
+          <div><b style="font-family:Inter;font-size:22px;font-weight:600;letter-spacing:-.015em">Sprint 4 review</b><span>Inter · 22 · 600</span></div>
+          <div><span style="font-family:Inter;font-size:14px">Ship the issue read slice</span><span>Inter · 14 · 400</span></div>
+          <div><span style="font-family:Inter;font-size:12px;color:var(--slate)">Edited 4 min ago</span><span>Inter · 12</span></div>
+          <div><span class="mono" style="font-size:12px;color:var(--slate)">ACM-1 · 19 Oct</span><span>JetBrains Mono · 11.5</span></div>
+        </div>
+        <p class="note" style="margin-top:10px"><i class="ti ti-info-circle"></i>Inter in the product, Outfit for brand moments like this page. Issue keys and dates use tabular figures so columns never shift.</p>
+      </div>
+      <div class="card">
+        <h3 class="ds-label" style="margin-top:0">Status, with a shape and a word</h3>
+        <div class="chips">
+          <span class="k-chip" style="background:#e4e7ec;color:#333a45"><i class="ti ti-circle"></i>Todo</span>
+          <span class="k-chip" style="background:#e3ecfd;color:#1b3f9c"><i class="ti ti-progress"></i>In progress</span>
+          <span class="k-chip" style="background:#ece6fd;color:#5527a8"><i class="ti ti-eye"></i>In review</span>
+          <span class="k-chip" style="background:#fbe3e3;color:#8c1c1c"><i class="ti ti-alert-triangle"></i>Blocked</span>
+          <span class="k-chip" style="background:#dcefe3;color:#14532d"><i class="ti ti-circle-check"></i>Done</span>
+          <span class="k-chip" style="background:#eceef1;color:#5c626b"><i class="ti ti-circle-x"></i>Cancelled</span>
+        </div>
+        <h3 class="ds-label" style="margin:22px 0 12px">Priority, a different family</h3>
+        <div class="chips">
+          <span class="k-chip" style="background:#fbe3e3;color:#8c1c1c"><i class="ti ti-alert-triangle"></i>Urgent</span>
+          <span class="k-chip" style="background:#fdeed2;color:#7a4a08"><i class="ti ti-arrow-up"></i>High</span>
+          <span class="k-chip" style="background:#e3ecfd;color:#1b3f9c"><i class="ti ti-flag"></i>Medium</span>
+          <span class="k-chip" style="background:#eceef1;color:#4a4f57"><i class="ti ti-arrow-down"></i>Low</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="ds-label" style="margin-top:0">Surfaces, light and dark</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="border-radius:10px;padding:12px;background:#f5f6f8;border:1px solid #e2e5ea"><div style="background:#fff;border:1px solid #e2e5ea;border-radius:8px;padding:10px;font-size:13px;color:#14161a">Default<div style="font-size:12px;color:#666c75">Tertiary text</div><div style="margin-top:8px;height:22px;border-radius:5px;background:#0060e5"></div></div></div>
+          <div style="border-radius:10px;padding:12px;background:#0e1013;border:1px solid #262b33"><div style="background:#15181d;border:1px solid #262b33;border-radius:8px;padding:10px;font-size:13px;color:#e8eaed">Default<div style="font-size:12px;color:#838a95">Tertiary text</div><div style="margin-top:8px;height:22px;border-radius:5px;background:#0497f8"></div></div></div>
+        </div>
+        <p class="note"><i class="ti ti-moon"></i>The theme is a cookie read on the server, so the first byte is already the right theme. There’s no flash of the wrong one to hide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="outcomes">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="num">Chapter 10</div>
+      <h2>What the design holds itself to.</h2>
+      <p>These aren’t usage numbers. They are promises the product makes and the test suites check on every change.</p>
+    </div>
+    <div class="metrics">
+      <div class="card metric"><div class="val">1 link</div><div class="what">For any narrowed list</div><p>Paste it and your colleague sees the same issues, in the same order.</p></div>
+      <div class="card metric"><div class="val">5 min</div><div class="what">For guarded acts after one code</div><p>Long enough for a batch of changes, short enough that an open laptop isn’t a risk.</p></div>
+      <div class="card metric"><div class="val">30 days</div><div class="what">In the Trash before a purge</div><p>Only a Draft or an archived Document can be deleted at all.</p></div>
+      <div class="card metric"><div class="val">1 place</div><div class="what">Where each colour is written</div><p>Components ask for a role, so a theme can’t be written twice or drift.</p></div>
+    </div>
+
+    <div class="reflection">
+      <div class="num">Reflection</div>
+      <blockquote>The hardest part wasn’t a screen. It was agreeing that archive, delete and purge are three different things, and writing that down before we built any of them.</blockquote>
+    </div>
+  </div>
+</section>
+
+<Fragment slot="footer">
+  <span>Kova case study · © Xkye Solutions</span>
+  <a href="prototype.html" target="_blank" rel="noopener">Open the full-screen prototype</a>
+</Fragment>
+
+<script>
+  const $ = (s: string) => document.querySelector<HTMLElement>(s)!;
+  const esc = (s: string) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+
+  // ---------------------------------------------------------------- terminal --
+  const D = (s) => `<span class="dim">${s}</span>`;
+  const CMDS = [
+    ['kova my-work', 'Your queues, the same ones Home shows', `Sprint 4 (2)
+  ACM-3   ${'In progress'.padEnd(12)} High     Make the issue list keyboard navigable
+  ACM-5   ${'Blocked'.padEnd(12)} Urgent   Unblock the local Supabase stack
+
+Slice 2 (1)
+  BLU-1   ${'In progress'.padEnd(12)} Urgent   Load the Bluebird order history into the warehouse
+
+Everything else (1)
+  ACM-8   ${'Todo'.padEnd(12)} Medium   Draft the CLI error contract`],
+    ['kova issues --status blocked --mine', 'A Filter, as flags', `ACM-5   Blocked   Urgent   Unblock the local Supabase stack   ${D('due 14 Oct')}
+
+${D('1 issue')}`],
+    ['kova issue acm-1', 'One issue, rendered from the same Markdown', `<b>ACM-1  Ship the issue read slice</b>
+In progress · High · Mira Member · Sprint 4 · due 17 Oct
+${D('Labels: web, api')}
+
+## Why
+The daily work path needs an issue to read, so this fixture
+is what the local stack has to show until creation lands.
+
+${D('2 comments · kova issue comment ACM-1 "…" to reply')}`],
+    ['kova issue status ACM-3 in_review', 'Move work without leaving the terminal', `<span class="ok">✓</span> ACM-3 is now In review.`],
+    ['kova docs search projection', 'Search the Documents you can read', `🔎  Search projection notes    ${D('Acme / Architecture overview')}
+🏛️  Architecture overview      ${D('Acme')}
+
+${D('2 documents')}`],
+    ['kova issue acm-42', 'Failures say what happened and how to fix it', `<span class="err">error:</span> Issue ACM-42 was not found.
+Request ID: 33333333-3333-4333-8333-333333333333
+Check the identifier and the selected profile.`],
+    ['kova auth status', 'Who you are, where, and how', `Signed in as Kova Owner (owner@company.com)
+Profile   default  ${D('(the packaged API address)')}
+Token     Laptop CLI, expires 31 Dec 2026
+Stored in the system keychain`],
+  ];
+  const cmds = $('#cmds'), tty = $('#tty');
+  cmds.innerHTML = CMDS.map(([c, d], n) => `<button class="cmd" role="tab" data-n="${n}" aria-selected="false"><code>${esc(c)}</code><span>${d}</span></button>`).join('');
+  let typing, ran = false;
+  function run(n) {
+    ran = true;
+    const [c, , out] = CMDS[n];
+    cmds.querySelectorAll('.cmd').forEach((b, i) => { b.classList.toggle('on', i === n); b.setAttribute('aria-selected', i === n); });
+    clearInterval(typing);
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = reduced ? c.length : 0;
+    const draw = (done) => { tty.innerHTML = `<span class="pr">$</span> ${esc(c.slice(0, i))}${done ? `\n${out}\n\n<span class="pr">$</span> <span class="caret"></span>` : '<span class="caret"></span>'}`; };
+    if (reduced) return draw(true);
+    typing = setInterval(() => { i++; if (i >= c.length) { clearInterval(typing); setTimeout(() => draw(true), 180); } draw(false); }, 28);
+  }
+  cmds.addEventListener('click', (e) => { const b = e.target.closest('.cmd'); if (b) run(+b.dataset.n); });
+  tty.innerHTML = `<span class="pr">$</span> <span class="caret"></span>`;
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { if (!ran) run(0); o.disconnect(); } }, { threshold: .4 }).observe(tty);
+
+  // Nav state
+  const nav = $('#nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), { passive: true });
+</script>
+</CaseStudy>

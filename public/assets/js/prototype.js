@@ -317,7 +317,8 @@
   }
 
   function report() {
-    if (EMBEDDED) parent.postMessage({ type: 'kova:url', path: S.path, theme: S.theme }, '*');
+    // Embedded, the case study's title bar shows the path, and its full-screen link opens this same view.
+    if (EMBEDDED) parent.postMessage({ type: 'kova:status', url: S.path, theme: S.theme, href: location.pathname + '#' + S.path }, '*');
     // Standalone, the address bar carries the path, so any view (a narrowed list included) is a link.
     else if (S.signedIn && location.hash.slice(1) !== S.path) history.pushState(null, '', '#' + S.path);
   }
@@ -1460,11 +1461,11 @@
     S.signedIn = true;
     if (m.theme) S.theme = m.theme;
     if (m.path) {
-      S.side = m.side ?? (m.path.startsWith('/docs/') ? S.side : null);
+      S.side = m.view ?? (m.path.startsWith('/docs/') ? S.side : null);
       if (m.action !== 'collapse') S.collapsed = false;
       nav(m.path);
     } else { render(); report(); }
-    if (m.action && ACTIONS[m.action]) setTimeout(() => ACTIONS[m.action](m.arg), 160);
+    if (m.action && ACTIONS[m.action]) setTimeout(() => ACTIONS[m.action](m.data), 160);
   });
 
   // ------------------------------------------------------------------ boot --

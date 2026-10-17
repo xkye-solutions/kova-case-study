@@ -1,0 +1,19 @@
+---
+order: 6
+title: "Versions mark moments, not saves"
+icon: "history"
+goto: {"path": "/docs/ACM/architecture-overview", "view": "history"}
+---
+
+Several people can edit a Document at once, so Kova doesn’t ask anyone to save. A version is taken automatically once the editors go quiet, and anyone can name one by hand, for example “Sent to client”.
+
+<Decisions>
+
+- **Every version is kept** for as long as the Document exists, and reading one is clearly marked as read-only.
+- **An Icon and a Cover belong to the Document, not its content,** so changing them never creates a new version.
+
+</Decisions>
+
+<Tries>
+<TryButton>Browse the versions</TryButton>
+</Tries>

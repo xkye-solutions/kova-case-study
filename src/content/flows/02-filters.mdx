@@ -1,0 +1,24 @@
+---
+order: 2
+title: "Filters that are links"
+icon: "filter"
+goto: {"path": "/issues?status=in_progress,blocked&assignee=me", "action": "filter", "data": "priority"}
+---
+
+Narrow any issue list by Status, Priority, Assignee, Project or Placement. Values within one field are alternatives, and fields narrow together. The whole Filter is carried in the address.
+
+<div class="addr-demo" aria-label="An example Filter address">/issues?<wbr /><b>status</b>=in_progress,<wbr />blocked&amp;<wbr /><b>assignee</b>=me</div>
+
+<Decisions>
+
+- **“Me” and “Unassigned” are values,** not special views, so “my blocked work” is just a Filter.
+- **A Saved filter is named and private.** It shows up in your own panel and nobody else’s.
+- **The keyboard is a first-class path:** `j` and `k` move through the rows and `Enter` opens one.
+
+</Decisions>
+
+<p style="font-size:14.5px;margin-top:16px">Watch the address bar above the prototype change as you pick values.</p>
+
+<Tries>
+<TryButton>Try narrowing the list</TryButton>
+</Tries>

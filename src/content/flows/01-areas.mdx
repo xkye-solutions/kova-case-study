@@ -1,0 +1,22 @@
+---
+order: 1
+num: "Chapter 5 · Key flows"
+title: "Areas, not apps"
+icon: "layout-sidebar"
+goto: {"path": "/"}
+---
+
+The strip at the far left switches between **Kova**, **Kova Docs** and, for Owners, **Admin**. Each Area has its own navigation and remembers where you left it, so moving from an issue to a document and back is one press that keeps your place.
+
+<Decisions>
+
+- **No top bar anywhere.** The bell, search and the fold control moved into the panel header, so the content gets the full height.
+- **Home answers “what needs me?”** with your open issues, anything waiting on your review, and the running Sprints, each with its progress counted from the issues themselves.
+- **Admin shows its count on the strip** whenever something is waiting on an Owner.
+
+</Decisions>
+
+<Tries>
+<TryButton>Show Home</TryButton>
+<TryButton icon="bell" goto={{ path: '/', action: 'notifications' }}>Open notifications</TryButton>
+</Tries>
