@@ -1,5 +1,7 @@
 # Kova — Case Study & Interactive Prototype
 
+> **Read-only Mirror.** This is maintained in Xkye Solutions' private monorepo and split here with its history. Changes made here are overwritten, so please don't open issues or pull requests.
+
 A portfolio case study by **Xkye Solutions** for Kova, the studio's own project, issue and knowledge tool. The page tells the product story and embeds a live, clickable prototype of the Kova web app that follows along as you scroll.
 
 - `index.html` — the case study
@@ -82,4 +84,4 @@ Colours, type and logos follow the Kova brand kit (`brand/kova` in the monorepo)
 
 ## Deploying
 
-This Case Study lives in the `xkye-solutions` monorepo. `pnpm build` copies `public/` to `dist/`. That built output is deployed to Cloudflare at `kova.xkye.app` (unlisted) and published to the read-only `xkye-solutions/kova-case-study` Mirror.
+This Case Study lives in the `xkye-solutions` monorepo. `pnpm build` copies `public/` to `dist/`. That built output is deployed to Cloudflare at `kova.xkye.app` (unlisted), and its source is split, with history, to the read-only `xkye-solutions/kova-case-study` Mirror.
