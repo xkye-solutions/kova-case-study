@@ -16,6 +16,7 @@ const flows = (await getCollection('flows')).sort((a, b) => a.data.order - b.dat
   title="Kova Case Study"
   description="Kova: Xkye's own project, issue and knowledge tool. A case study by Xkye Solutions with a live interactive prototype."
   site="https://kova.xkye.app/"
+  analyticsToken={import.meta.env.PUBLIC_CF_BEACON_TOKEN}
   ogTitle="Kova Case Study · Xkye Solutions"
   ogDescription="Issues, plans and documents in one tool that uses the same words everywhere. With a live interactive prototype."
 >
