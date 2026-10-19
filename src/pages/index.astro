@@ -33,7 +33,6 @@ const flows = (await getCollection('flows')).sort((a, b) => a.data.order - b.dat
       <a href="#flows">Key flows</a>
       <a href="#vocabulary">Archive &amp; Trash</a>
       <a href="#terminal">Terminal</a>
-      <a href="#engineering">Engineering</a>
       <a href="#system">Design system</a>
     </nav>
     <a class="nav-cta" href="prototype.html" target="_blank" rel="noopener"><i class="ti ti-app-window"></i><span>Open prototype</span></a>
@@ -145,48 +144,10 @@ const flows = (await getCollection('flows')).sort((a, b) => a.data.order - b.dat
   </div>
 </section>
 
-<section class="band" id="engineering">
-  <div class="wrap">
-    <div class="band-head">
-      <div class="num">Chapter 8</div>
-      <h2>Built so the rules can’t be skipped.</h2>
-      <p>Product behaviour lives in use cases, not in routes or screens. The web server is the only place the system is put together, and the database refuses anything a migration hasn’t explicitly granted.</p>
-    </div>
-    <div class="arch">
-      <div class="diagram" role="img" aria-label="Architecture: the web app and the CLI call the same versioned API, which runs application use cases over PostgreSQL adapters on Supabase with row level security.">
-        <div class="layer">
-          <div class="layer-row">
-            <div class="box app"><b>apps/web</b><span>TanStack Start and React. The composition root, the screens, and <code>/api/v1</code></span></div>
-            <div class="box app"><b>apps/cli</b><span>The <code>kova</code> command, talking to the API through the shared client</span></div>
-          </div>
-          <div class="arrow"><i class="ti ti-arrow-down"></i> one versioned contract, one error envelope</div>
-          <div class="box"><b>packages/api</b><span>The transport contract and the fetch-based client both sides use</span></div>
-          <div class="arrow"><i class="ti ti-arrow-down"></i> a resolved actor on every request</div>
-          <div class="layer-row">
-            <div class="box"><b>packages/application</b><span>Use cases that hold the product’s rules</span></div>
-            <div class="box"><b>packages/domain</b><span>The vocabulary, as types</span></div>
-          </div>
-          <div class="arrow"><i class="ti ti-arrow-down"></i> repository interfaces the application owns</div>
-          <div class="box"><b>packages/db</b><span>PostgreSQL adapters behind those interfaces</span></div>
-          <div class="arrow"><i class="ti ti-arrow-down"></i></div>
-          <div class="box db"><b>Supabase · PostgreSQL</b><span>Row level security on every table. Grants and policies ship together in migrations, so a table nobody granted stays unreachable.</span></div>
-        </div>
-      </div>
-      <dl class="facts">
-        <div><dt>24</dt><dd>Database migrations, each checked to be applied and to lint cleanly before a release</dd></div>
-        <div><dt>35</dt><dd>pgTAP suites that test the database’s own rules, including who can see what</dd></div>
-        <div><dt>316</dt><dd>Test files across the apps and packages, plus browser suites for the critical web flows</dd></div>
-        <div><dt>52</dt><dd>Colour pairs measured for contrast across both themes, with an automated accessibility scan as the lasting gate</dd></div>
-        <div><dt>0</dt><dd>Credentials allowed in the repository or its history. A scan checks every tracked file and every past commit.</dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
-
 <section class="band" id="system" style="background:#fff">
   <div class="wrap">
     <div class="band-head">
-      <div class="num">Chapter 9</div>
+      <div class="num">Chapter 8</div>
       <h2>One family of marks, one set of tokens.</h2>
       <p>The interface is built on a token layer: a colour is written in exactly one place, and every component asks for a role like “surface” or “muted text” rather than a hex value. That is what makes the dark theme a peer of the light one instead of an inversion.</p>
     </div>
@@ -252,7 +213,7 @@ const flows = (await getCollection('flows')).sort((a, b) => a.data.order - b.dat
 <section class="band" id="outcomes">
   <div class="wrap">
     <div class="band-head">
-      <div class="num">Chapter 10</div>
+      <div class="num">Chapter 9</div>
       <h2>What the design holds itself to.</h2>
       <p>These aren’t usage numbers. They are promises the product makes and the test suites check on every change.</p>
     </div>
